@@ -9,17 +9,25 @@ public class CharacterMovement : MonoBehaviour {
 	public GameObject mainCam;
 	public float offWall;
 
+
 	void Start () {
 
 	}
 	
 
 	void Update () {
-		transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * moveSpeed * Time.deltaTime);
+		float Horizontal = Input.GetAxis("Horizontal");
+		float Vertical = Input.GetAxis("Vertical");
+		Vector3 direction = Camera.main.transform.right * Horizontal + Camera.main.transform.forward * Vertical;
+		direction = Vector3.ProjectOnPlane(direction, Vector3.up);
+
+		transform.position += direction.normalized * moveSpeed * Time.deltaTime;
+
 		var v = Camera.main.transform.forward;
 		v.y = 0.0f;
 		v.Normalize();
-		transform.forward = v;
+
+		transform.rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
 		
 		RaycastHit hit;
 		var dir = origCameraPos.transform.position - transform.position;
