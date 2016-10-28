@@ -8,27 +8,36 @@ public class CharacterMovement : MonoBehaviour {
 	public GameObject origCameraPos;
 	public GameObject mainCam;
 	public float offWall;
+	public float smoothTime;
 
-
-	void Start () {
-
-	}
-	
+	Vector3 lastDir;
 
 	void Update () {
 		float Horizontal = Input.GetAxis("Horizontal");
 		float Vertical = Input.GetAxis("Vertical");
 		Vector3 direction = Camera.main.transform.right * Horizontal + Camera.main.transform.forward * Vertical;
-		direction = Vector3.ProjectOnPlane(direction, Vector3.up);
+		//direction = Vector3.ProjectOnPlane(direction, Vector3.up);
 
-		transform.position += direction.normalized * moveSpeed * Time.deltaTime;
+		direction.y = 0;
 
-		var v = Camera.main.transform.forward;
-		v.y = 0.0f;
-		v.Normalize();
+		if (direction.magnitude > 1) {
+			direction = direction.normalized;
+			//direction.Normalize();
+		}
+		if (direction.magnitude > 0) {
+			lastDir = direction;
+		}
 
-		transform.rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
-		
+		Debug.DrawLine(transform.position, transform.position + lastDir * 5, Color.red);
+
+		transform.position += direction * moveSpeed * Time.deltaTime;
+
+		var nextRotation = Quaternion.LookRotation(lastDir.normalized, Vector3.up);
+
+		if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
+		transform.rotation = Quaternion.Lerp (transform.rotation, nextRotation, smoothTime);
+
+
 		RaycastHit hit;
 		var dir = origCameraPos.transform.position - transform.position;
 		Debug.DrawRay(transform.position, dir);
