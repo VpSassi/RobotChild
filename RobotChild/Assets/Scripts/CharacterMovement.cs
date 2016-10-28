@@ -10,6 +10,8 @@ public class CharacterMovement : MonoBehaviour {
 	public float offWall;
 	public float smoothTime;
 
+
+
 	Vector3 lastDir;
 
 	void Update () {
@@ -32,7 +34,11 @@ public class CharacterMovement : MonoBehaviour {
 
 		transform.position += direction * moveSpeed * Time.deltaTime;
 
-		var nextRotation = Quaternion.LookRotation(lastDir.normalized, Vector3.up);
+		var nextRotation = Quaternion.identity;
+
+		if (lastDir.magnitude > 0) {
+			nextRotation = Quaternion.LookRotation(lastDir.normalized, Vector3.up);
+		}
 
 		if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
 		transform.rotation = Quaternion.Lerp (transform.rotation, nextRotation, smoothTime);
@@ -46,6 +52,7 @@ public class CharacterMovement : MonoBehaviour {
 		}
 		else {
 			mainCam.transform.position = origCameraPos.transform.position;
-		} 
+		}
+
 	}
 }
