@@ -10,11 +10,25 @@ public class CharacterMovement : MonoBehaviour {
 	public float offWall;
 	public float smoothTime;
 
-
-
 	Vector3 lastDir;
 
+	PlayerAbilities pA;
+	Energy enrg;
+
+	void Start() {
+		pA = GetComponent<PlayerAbilities>();
+		enrg = GetComponent<Energy>();
+	}
+
 	void Update () {
+
+		if(enrg.getIsDead()) {
+			return;
+		}
+
+
+		if (!pA.getPlayDead()) {
+
 		float Horizontal = Input.GetAxis("Horizontal");
 		float Vertical = Input.GetAxis("Vertical");
 		Vector3 direction = Camera.main.transform.right * Horizontal + Camera.main.transform.forward * Vertical;
@@ -33,16 +47,16 @@ public class CharacterMovement : MonoBehaviour {
 		Debug.DrawLine(transform.position, transform.position + lastDir * 5, Color.red);
 
 		transform.position += direction * moveSpeed * Time.deltaTime;
-
 		var nextRotation = Quaternion.identity;
 
 		if (lastDir.magnitude > 0) {
 			nextRotation = Quaternion.LookRotation(lastDir.normalized, Vector3.up);
 		}
 
-		if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
-		transform.rotation = Quaternion.Lerp (transform.rotation, nextRotation, smoothTime);
 
+		if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
+			transform.rotation = Quaternion.Lerp (transform.rotation, nextRotation, smoothTime);
+		}
 
 		RaycastHit hit;
 		var dir = origCameraPos.transform.position - transform.position;

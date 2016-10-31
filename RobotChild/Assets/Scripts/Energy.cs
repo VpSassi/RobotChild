@@ -11,6 +11,12 @@ public class Energy : MonoBehaviour {
 
 	public TextMesh energy;
 
+	powerCore pC;
+
+	public void setPowerCore(powerCore core) {
+		pC = core;
+	}
+
 	void Start () {
 
 	}
@@ -35,10 +41,19 @@ public class Energy : MonoBehaviour {
 		if (energyMax < 0) {
 			Die();
 		}
+
+		if (Input.GetKeyDown(KeyCode.E) & pC != null) {
+			energyMax = 100;
+			Destroy(pC.gameObject);
+		}
 	}
 
 	void Die() {
 		isDead = true;
 		print("DEAD");
+	}
+
+	public bool getIsDead() {
+		return isDead;
 	}
 }
