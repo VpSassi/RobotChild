@@ -5,6 +5,7 @@ public class powerCore : MonoBehaviour {
 
 	Energy e;
 
+
 	void Start() {
 		e = GameObject.Find("robotChild").GetComponent<Energy>();
 	}
