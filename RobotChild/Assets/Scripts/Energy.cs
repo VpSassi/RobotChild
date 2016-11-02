@@ -10,6 +10,13 @@ public class Energy : MonoBehaviour {
 	bool isDead;
 
 	public TextMesh energy;
+	public ParticleSystem pCoreParticle;
+
+	powerCore pC;
+
+	public void setPowerCore(powerCore core) {
+		pC = core;
+	}
 
 	void Start () {
 
@@ -35,10 +42,21 @@ public class Energy : MonoBehaviour {
 		if (energyMax < 0) {
 			Die();
 		}
+
+		if (Input.GetKeyDown(KeyCode.E) & pC != null) {
+			energyMax = 100;
+			Destroy(pC.gameObject);
+			Instantiate(pCoreParticle, pC.transform.position, Quaternion.identity);
+
+		}
 	}
 
-	void Die() {
+	public void Die() {
 		isDead = true;
 		print("DEAD");
+	}
+
+	public bool getIsDead() {
+		return isDead;
 	}
 }
