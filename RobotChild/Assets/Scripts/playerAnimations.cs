@@ -23,6 +23,11 @@ public class playerAnimations : MonoBehaviour {
 	
 	void Update () {
 	
-
+		if (charMov.moving == true && !energy.getIsDead()) {
+			pAnim.Play("walkingAnimation");
+		}
+		else {
+			pAnim.Play("Idle");
+		}
 	}
 }
