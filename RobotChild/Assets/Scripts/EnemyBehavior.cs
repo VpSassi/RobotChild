@@ -3,17 +3,23 @@ using System.Collections;
 
 public class EnemyBehavior : MonoBehaviour {
 
-    public float patrolSpeed;
     public float closeEnoughToWP = 0.5f;
     public Transform[] points;
     public LayerMask layerMask;
 
     private int destPoint = 0;
-	float remainingDistance;
+    float remainingDistance;
+    float countDown;
+    float aggroTimer;
+    bool hasPlayerBeenDetected;
+    //enum AIState { Neutral, Alarmed, Chasing};
+    //AIState aiState;
     GameObject player;
+    NavMeshAgent navAgent;
+    Renderer rend;
     Vector3 direction;
     Vector3 playerDirection;
-    NavMeshAgent navAgent;
+    Vector3 playerLastPos;
 
 
 
@@ -25,30 +31,48 @@ public class EnemyBehavior : MonoBehaviour {
 	void Awake() {
 		navAgent = GetComponent<NavMeshAgent>();
 		destPoint = points.Length - 1;
-		NextWp();		
+		NextWp();
 	}
 
     void Start() {
         player = GameObject.Find("robotChild");
-        layerMask = ~layerMask;                                                                     //We want our raycasts to ignore selected layers
+        rend = GetComponent<Renderer>();
+        layerMask = ~layerMask;                                                                     //We want our raycasts to ignore selected layers  
+        //aiState = AIState.Neutral;
     }
 
 	void Update() {
+        countDown -= Time.deltaTime;
+        aggroTimer -= Time.deltaTime;
         playerDirection = player.transform.position - transform.position;
         direction = points[destPoint].position - transform.position;
 		remainingDistance = direction.magnitude;
 
         //Detection behavior
-        if (IsPlayerDetected()) {
-            navAgent.SetDestination(player.transform.position);
+        if (IsPlayerInLos()) {
+            playerLastPos = player.transform.position;
+            if (hasPlayerBeenDetected == false) {
+                hasPlayerBeenDetected = true;
+                navAgent.SetDestination(player.transform.position);
+                rend.material.color = Color.red;
+                aggroTimer = 5.0f;
+            }
+            if (hasPlayerBeenDetected == true) {
+                navAgent.SetDestination(player.transform.position);
+                aggroTimer = 5;
+            }
+        } else if (hasPlayerBeenDetected == true && aggroTimer > 0) {
+            navAgent.SetDestination(playerLastPos);
+        } else if (aggroTimer < 0) {
+            rend.material.color = Color.blue;
+            hasPlayerBeenDetected = false;
+            navAgent.SetDestination(points[destPoint].position);
         }
 
-        //Patrol logic
+        //Patrol behavior
         if (remainingDistance < closeEnoughToWP) {
 			NextWp();
 		}
-
-		// transform.position += direction.normalized * patrolSpeed * Time.deltaTime;
 	}
 
 
@@ -63,7 +87,7 @@ public class EnemyBehavior : MonoBehaviour {
         navAgent.SetDestination(points[destPoint].position);
     }
 
-    bool IsPlayerDetected() {
+    bool IsPlayerInLos() {
         if (!Physics.Raycast(transform.position, playerDirection, playerDirection.magnitude, layerMask)) {
             return true;
         } else {
