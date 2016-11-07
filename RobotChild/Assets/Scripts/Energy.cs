@@ -47,7 +47,6 @@ public class Energy : MonoBehaviour {
 			energyMax = 100;
 			Destroy(pC.gameObject);
 			Instantiate(pCoreParticle, pC.transform.position, Quaternion.identity);
-
 		}
 	}
 
