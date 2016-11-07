@@ -18,6 +18,10 @@ public class Energy : MonoBehaviour {
 		pC = core;
 	}
 
+	public powerCore getPowerCore() {
+		return pC;
+	}
+
 	void Start () {
 
 	}
