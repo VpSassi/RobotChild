@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyBehavior : MonoBehaviour {
 
-    public float closeEnoughToWP = 0.5f;
+    public float closeEnoughToWP = 1f;
     public Transform[] points;
     public LayerMask layerMask;
 
@@ -25,13 +25,13 @@ public class EnemyBehavior : MonoBehaviour {
 
 
 
-	// TODO: also support turning around at last WP?
+    // TODO: also support turning around at last WP?
 
-	void Awake() {
+    void Awake() {
 		navAgent = GetComponent<NavMeshAgent>();
 		destPoint = points.Length - 1;
-		NextWp();
-	}
+        //NextWp();
+    }
 
     void Start() {
         player = GameObject.Find("robotChild");
@@ -43,8 +43,10 @@ public class EnemyBehavior : MonoBehaviour {
         countDown -= Time.deltaTime;
         aggroTimer -= Time.deltaTime;
         playerDirection = player.transform.position - transform.position;
-        direction = points[destPoint].position - transform.position;
-		remainingDistance = direction.magnitude;
+        if (points.Length > 0) {
+            direction = points[destPoint].position - transform.position;
+        }
+        remainingDistance = direction.magnitude;
 
         //Detection behavior
         if (IsPlayerInSight()) {
@@ -93,9 +95,5 @@ public class EnemyBehavior : MonoBehaviour {
         } else {
             return false;
         }
-    }
-
-    void Search() {
-
     }
 }
