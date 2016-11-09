@@ -45,6 +45,10 @@ public class PlayerAbilities : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Space) && !nrg.getIsDead()) {
 			playDead = !playDead;
+			
+		}
+		else {
+			
 		}		
 
 		if (playDead == true) {

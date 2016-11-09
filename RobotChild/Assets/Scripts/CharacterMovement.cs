@@ -17,6 +17,8 @@ public class CharacterMovement : MonoBehaviour {
 	PlayerAbilities pA;
 	Energy enrg;
 
+	public Animator pAnim;
+
 	void Start() {
 		pA = GetComponent<PlayerAbilities>();
 		enrg = GetComponent<Energy>();
@@ -66,10 +68,10 @@ public class CharacterMovement : MonoBehaviour {
 		}
 
 		if (moving == true) {
-			print("moving");
+			pAnim.SetBool("Running", true);
 
 		}else {
-			print("standing");
+			pAnim.SetBool("Running", false);
 		}
 
 		RaycastHit hit;
