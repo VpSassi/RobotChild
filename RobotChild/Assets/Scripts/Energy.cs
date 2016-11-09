@@ -74,18 +74,18 @@ public class Energy : MonoBehaviour {
 
 		if (Input.GetKey(KeyCode.LeftShift) && energyMax > 20 && !getIsDead()) {
 			charMov.moveSpeed = sprintSpeed;
-			//pAnim.SetBool("sprint", true);
+			pAnim.SetBool("sprint", true);
 		}
 		else {
 			charMov.moveSpeed = standardSpeed;
-			//pAnim.SetBool("sprint", false);
+			pAnim.SetBool("sprint", false);
 		}
 	}
 
 	public void Die() {
 		isDead = true;
 		print("DEAD");
-		//pAnim.SetBool("dead", true);
+		pAnim.SetBool("dead", true);
 	}
 
 	public bool getIsDead() {
