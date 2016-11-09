@@ -67,6 +67,7 @@ public class CharacterMovement : MonoBehaviour {
 
 		if (moving == true) {
 			print("moving");
+
 		}else {
 			print("standing");
 		}
