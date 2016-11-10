@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemyBehavior : MonoBehaviour {
 
     public float closeEnoughToWP = 1f;
+    public float aggroTime;
     public Transform[] points;
     public LayerMask layerMask;
 
@@ -12,6 +13,7 @@ public class EnemyBehavior : MonoBehaviour {
     float countDown;
     float aggroTimer;
     bool lookingForPlayer;
+    bool playerLastPosReached;
     enum AIState { Neutral, Alarmed, Chasing};
     GameObject player;
     NavMeshAgent navAgent;
@@ -22,6 +24,7 @@ public class EnemyBehavior : MonoBehaviour {
 
     Search search;
     PlayerAbilities pa;
+    MoveToLastPos mtlp;
 
 
 
@@ -40,6 +43,7 @@ public class EnemyBehavior : MonoBehaviour {
         player = GameObject.Find("robotChild");
         search = GetComponent<Search>();
         pa = player.GetComponent<PlayerAbilities>();
+        mtlp = GetComponent<MoveToLastPos>();
         rend = GetComponent<Renderer>();
         layerMask = ~layerMask;                                                                     //We want our raycasts to ignore selected layers  
     }
@@ -58,26 +62,30 @@ public class EnemyBehavior : MonoBehaviour {
             playerLastPos = player.transform.position;
             if (lookingForPlayer) {
                 navAgent.SetDestination(player.transform.position);
-                aggroTimer = 5;
+                aggroTimer = aggroTime;
             }
             else {
                 lookingForPlayer = true;
                 navAgent.SetDestination(player.transform.position);
                 rend.material.color = Color.red;
-                aggroTimer = 5.0f;
+                aggroTimer = aggroTime;
             }
         }
         else if (lookingForPlayer == true && aggroTimer > 0) {
-            navAgent.SetDestination(playerLastPos);
-  
-            //if ((playerLastPos - transform.position).magnitude < closeEnoughToWP) {
-            //    playerLastPosReached = true;
-            //    search.SearchInRadius(navAgent, 15f);
-            //}
+            if (playerLastPosReached == false) {
+                navAgent.SetDestination(playerLastPos);
+                if ((playerLastPos - transform.position).magnitude < closeEnoughToWP) {
+                    playerLastPosReached = true;
+                }
+            }
+            if (playerLastPosReached == true) {
+                search.SearchInRadius(navAgent, 15f);
+            }
         }
         else if (aggroTimer < 0) {
             rend.material.color = Color.blue;
             lookingForPlayer = false;
+            playerLastPosReached = false;
             navAgent.SetDestination(points[destPoint].position);
         }
 
