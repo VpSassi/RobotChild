@@ -45,6 +45,7 @@ public class PlayerAbilities : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Space) && !nrg.getIsDead()) {
 			playDead = !playDead;
+            lightValue = lightMin;
 		}		
 
 		if (playDead == true) {
@@ -57,9 +58,11 @@ public class PlayerAbilities : MonoBehaviour {
 			nrg.Die();
 		}
 
-		if (Input.GetKeyDown(KeyCode.F) & core != null) {
-			print("picked up an item");
-
+		if (Input.GetKeyDown(KeyCode.F)) {
+			core = nrg.getPowerCore();
+			if (core != null) {
+				print ("picked up a power core");
+			}
 		}
 	}
 	public bool getPlayDead() {

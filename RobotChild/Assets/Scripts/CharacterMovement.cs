@@ -10,10 +10,14 @@ public class CharacterMovement : MonoBehaviour {
 	public float offWall;
 	public float smoothTime;
 
+	public bool moving;
+
 	Vector3 lastDir;
 
 	PlayerAbilities pA;
 	Energy enrg;
+
+	public Animator pAnim;
 
 	void Start() {
 		pA = GetComponent<PlayerAbilities>();
@@ -51,11 +55,23 @@ public class CharacterMovement : MonoBehaviour {
 
 		if (lastDir.magnitude > 0) {
 			nextRotation = Quaternion.LookRotation(lastDir.normalized, Vector3.up);
+			}
+
+			if (Input.GetButton("Vertical") || Input.GetButton("Horizontal")) {
+				transform.rotation = Quaternion.Lerp(transform.rotation, nextRotation, smoothTime);
+				moving = true;
+			}
+			else {
+				moving = false;
+			}
+
 		}
 
+		if (moving == true) {
+			pAnim.SetBool("Running", true);
 
-		if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
-			transform.rotation = Quaternion.Lerp (transform.rotation, nextRotation, smoothTime);
+		}else {
+			pAnim.SetBool("Running", false);
 		}
 
 		RaycastHit hit;
