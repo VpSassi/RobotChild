@@ -52,7 +52,7 @@ public class Energy : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.N) && !getIsDead()) {
 			energyMax = 23;
 		}
-		if (Input.GetKeyDown(KeyCode.E) && !getIsDead()) {
+		if (Input.GetKeyDown(KeyCode.T) && !getIsDead()) {
 			energyMax = 100;
 		}
 
