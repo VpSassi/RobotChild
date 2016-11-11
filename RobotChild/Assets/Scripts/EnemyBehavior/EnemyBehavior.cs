@@ -86,6 +86,7 @@ public class EnemyBehavior : MonoBehaviour {
             rend.material.color = Color.blue;
             lookingForPlayer = false;
             playerLastPosReached = false;
+            search.searchPoints.Clear();
             navAgent.SetDestination(points[destPoint].position);
         }
 
