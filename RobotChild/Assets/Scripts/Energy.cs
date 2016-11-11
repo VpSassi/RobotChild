@@ -41,8 +41,19 @@ public class Energy : MonoBehaviour {
 		energy.text = "" + energyMax;
 
 		if (isDead) {
-
+			energy.text = "DEAD";
+			//energy.font.material.color = Color.red;
 			return;
+		}
+
+		if (Input.GetKeyDown(KeyCode.M) && !getIsDead()) {
+			energyMax = 3;
+		}
+		if (Input.GetKeyDown(KeyCode.N) && !getIsDead()) {
+			energyMax = 23;
+		}
+		if (Input.GetKeyDown(KeyCode.E) && !getIsDead()) {
+			energyMax = 100;
 		}
 
 		eTimer += Time.deltaTime;
@@ -55,6 +66,13 @@ public class Energy : MonoBehaviour {
 		if (energyMax < 0) {
 			Die();
 			// Animator set death
+		}
+
+		if (energyMax <= 20 && charMov.moving == false && !getIsDead()) {
+			pAnim.SetBool("drunk idle", true);
+		}
+		else {
+			pAnim.SetBool("drunk idle", false);
 		}
 
 		if (energyMax <= 20 && charMov.moving == true && !getIsDead()) {
@@ -72,20 +90,20 @@ public class Energy : MonoBehaviour {
 			Instantiate(pCoreParticle, pC.transform.position, Quaternion.identity);
 		}
 
-		if (Input.GetKey(KeyCode.LeftShift) && energyMax > 20 && !getIsDead()) {
+		 if (Input.GetKey(KeyCode.LeftShift) && energyMax > 20 && !getIsDead()) {
 			charMov.moveSpeed = sprintSpeed;
 			pAnim.SetBool("sprint", true);
 		}
-		else {
+		else if (energyMax > 20){
 			charMov.moveSpeed = standardSpeed;
 			pAnim.SetBool("sprint", false);
-		}
+		} 
 	}
 
 	public void Die() {
 		isDead = true;
 		print("DEAD");
-		pAnim.SetBool("dead", true);
+		pAnim.SetBool("Dead", true);
 	}
 
 	public bool getIsDead() {
