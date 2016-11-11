@@ -6,7 +6,7 @@ public class Search : MonoBehaviour {
 
     public float closeEnoughToWP = 1f;
 
-    List<Vector3> searchPoints = new List<Vector3>();
+    public List<Vector3> searchPoints = new List<Vector3>();
     bool[] hasWPBeenReached = new bool[5];
 
 
