@@ -31,6 +31,6 @@ public class PlayerCamera : MonoBehaviour {
 		Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
 		camTransform.position = lookAt.position + rotation * dir;
 		camTransform.LookAt(lookAt.position);
-		cam.transform.rotation = camTransform.rotation;
+		//cam.transform.rotation = camTransform.rotation;
 	}
 }
