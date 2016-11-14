@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerAbilities : MonoBehaviour {
 
 	public bool playDead;
+	public bool pickup;
 
 	float pDedTimer;
 	public float pDedTimerMax;
@@ -64,6 +65,14 @@ public class PlayerAbilities : MonoBehaviour {
 			core = nrg.getPowerCore();
 			if (core != null) {
 				print ("picked up a power core");
+				pickup = true;
+			}
+			else {
+				pickup = false;
+			}
+
+		if (pickup == true && (Input.GetKeyDown(KeyCode.F))) {
+				print("dropped");
 			}
 		}
 	}
