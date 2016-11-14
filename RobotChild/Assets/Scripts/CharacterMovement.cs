@@ -40,7 +40,7 @@ public class CharacterMovement : MonoBehaviour {
 			return;
 		}
 
-
+		if (!pA.getDancing()) { 
 		if (!pA.getPlayDead()) {
 
 		float Horizontal = Input.GetAxis("Horizontal");
@@ -75,7 +75,7 @@ public class CharacterMovement : MonoBehaviour {
 				moving = false;
 			}
 
-		}
+		}  }
 
 		if (moving == true) {
 			pAnim.SetBool("Running", true);
