@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EnemyBehavior : MonoBehaviour {
 
+    public Transform audiosource;
     public float closeEnoughToWP = 1f;
     public float aggroTime;
     public Transform[] points;
@@ -49,6 +50,7 @@ public class EnemyBehavior : MonoBehaviour {
     }
 
 	void Update() {
+        audiosource.position = transform.position;  // kuljettaa fabricin audiosourcea
         countDown -= Time.deltaTime;
         aggroTimer -= Time.deltaTime;
         playerDirection = player.transform.position - transform.position;
