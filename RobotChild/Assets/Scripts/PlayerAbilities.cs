@@ -5,6 +5,7 @@ public class PlayerAbilities : MonoBehaviour {
 
 	public bool playDead;
 	public bool pickup;
+	public bool dance;
 
 	float pDedTimer;
 	public float pDedTimerMax;
@@ -75,7 +76,21 @@ public class PlayerAbilities : MonoBehaviour {
 				print("dropped");
 			}
 		}
+
+		if (Input.GetKeyDown(KeyCode.V) && !nrg.getIsDead()) {
+			dance = !dance;
+		}
+
+		if (dance == true) {
+			pAnim.SetBool("dancing",true);
+		} else {
+			pAnim.SetBool("dancing", false);
+		}
 	}
+	public bool getDancing() {
+		return dance;
+	}
+
 	public bool getPlayDead() {
 		return playDead;
 	}
