@@ -21,6 +21,8 @@ public class PlayerAbilities : MonoBehaviour {
 	public float lightValue;
 	public float lightAdd;
 
+	public Animator pAnim;
+
 	void Start() {
 		nrg = GetComponent<Energy>();
 		cM = GetComponent<CharacterMovement>();

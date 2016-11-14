@@ -24,7 +24,7 @@ public class EnemyBehavior : MonoBehaviour {
 
     Search search;
     PlayerAbilities pa;
-    MoveToLastPos mtlp;
+    IsItInSight iiis;
 
 
 
@@ -43,7 +43,7 @@ public class EnemyBehavior : MonoBehaviour {
         player = GameObject.Find("robotChild");
         search = GetComponent<Search>();
         pa = player.GetComponent<PlayerAbilities>();
-        mtlp = GetComponent<MoveToLastPos>();
+        iiis = GetComponent<IsItInSight>();
         rend = GetComponent<Renderer>();
         layerMask = ~layerMask;                                                                     //We want our raycasts to ignore selected layers  
     }
@@ -58,7 +58,7 @@ public class EnemyBehavior : MonoBehaviour {
         remainingDistance = direction.magnitude;
 
         //Detection behavior
-        if (IsPlayerInSight()) {
+        if (iiis.IsPlayerInSight(gameObject, layerMask)) {
             playerLastPos = player.transform.position;
             if (lookingForPlayer) {
                 navAgent.SetDestination(player.transform.position);
@@ -86,6 +86,7 @@ public class EnemyBehavior : MonoBehaviour {
             rend.material.color = Color.blue;
             lookingForPlayer = false;
             playerLastPosReached = false;
+            search.searchPoints.Clear();
             navAgent.SetDestination(points[destPoint].position);
         }
 
@@ -105,13 +106,5 @@ public class EnemyBehavior : MonoBehaviour {
 
         destPoint = (destPoint + 1) % points.Length;
         navAgent.SetDestination(points[destPoint].position);
-    }
-
-    bool IsPlayerInSight() {
-        if (!Physics.Raycast(transform.position, playerDirection, playerDirection.magnitude, layerMask) && playerDirection.magnitude < pa.lightValue) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }
