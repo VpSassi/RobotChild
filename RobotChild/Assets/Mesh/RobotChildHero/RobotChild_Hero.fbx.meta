@@ -1,0 +1,163 @@
+fileFormatVersion: 2
+guid: a7d4a6b9450c945c980a72530d206b69
+timeCreated: 1479112748
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Body
+    100002: Eye_L
+    100004: Eye_R
+    100006: Hand_L
+    100008: Hand_R
+    100010: Heart
+    100012: kneeCap_L
+    100014: kneeCap_R
+    100016: Mask
+    100018: Mouth
+    100020: Pipe
+    100022: PipeConnector
+    100024: PipeConnectorBack
+    100026: PowerMeter
+    100028: Rail_Back
+    100030: //RootNode
+    100032: Shield
+    100034: Straps_Body
+    100036: Straps_Head
+    400000: Body
+    400002: Eye_L
+    400004: Eye_R
+    400006: Hand_L
+    400008: Hand_R
+    400010: Heart
+    400012: kneeCap_L
+    400014: kneeCap_R
+    400016: Mask
+    400018: Mouth
+    400020: Pipe
+    400022: PipeConnector
+    400024: PipeConnectorBack
+    400026: PowerMeter
+    400028: Rail_Back
+    400030: //RootNode
+    400032: Shield
+    400034: Straps_Body
+    400036: Straps_Head
+    2300000: Body
+    2300002: Eye_L
+    2300004: Eye_R
+    2300006: Hand_L
+    2300008: Hand_R
+    2300010: Heart
+    2300012: kneeCap_L
+    2300014: kneeCap_R
+    2300016: Mask
+    2300018: Mouth
+    2300020: Pipe
+    2300022: PipeConnector
+    2300024: PipeConnectorBack
+    2300026: PowerMeter
+    2300028: Rail_Back
+    2300030: Shield
+    2300032: Straps_Body
+    2300034: Straps_Head
+    3300000: Body
+    3300002: Eye_L
+    3300004: Eye_R
+    3300006: Hand_L
+    3300008: Hand_R
+    3300010: Heart
+    3300012: kneeCap_L
+    3300014: kneeCap_R
+    3300016: Mask
+    3300018: Mouth
+    3300020: Pipe
+    3300022: PipeConnector
+    3300024: PipeConnectorBack
+    3300026: PowerMeter
+    3300028: Rail_Back
+    3300030: Shield
+    3300032: Straps_Body
+    3300034: Straps_Head
+    4300000: kneeCap_L
+    4300002: kneeCap_R
+    4300004: Heart
+    4300006: Mouth
+    4300008: Eye_L
+    4300010: Eye_R
+    4300012: PowerMeter
+    4300014: Straps_Head
+    4300016: Body
+    4300018: Rail_Back
+    4300020: Straps_Body
+    4300022: PipeConnectorBack
+    4300024: PipeConnector
+    4300026: Hand_L
+    4300028: Hand_R
+    4300030: Shield
+    4300032: Mask
+    4300034: Pipe
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

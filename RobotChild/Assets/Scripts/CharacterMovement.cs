@@ -24,7 +24,7 @@ public class CharacterMovement : MonoBehaviour {
 		enrg = GetComponent<Energy>();
 	}
 
-	void Update () {
+	void Update() {
 
 		RaycastHit hit;
 		var dir = origCameraPos.transform.position - transform.position;
@@ -35,56 +35,59 @@ public class CharacterMovement : MonoBehaviour {
 		else {
 			mainCam.transform.position = origCameraPos.transform.position;
 		}
+			mainCam.transform.rotation = origCameraPos.transform.rotation;
 
 		if (enrg.getIsDead()) {
 			return;
 		}
 
+		if (!pA.getDancing()) {
+			if (!pA.getPlayDead()) {
 
-		if (!pA.getPlayDead()) {
+				float Horizontal = Input.GetAxis("Horizontal");
+				float Vertical = Input.GetAxis("Vertical");
+				Vector3 direction = Camera.main.transform.right * Horizontal + Camera.main.transform.forward * Vertical;
+				//direction = Vector3.ProjectOnPlane(direction, Vector3.up);
 
-		float Horizontal = Input.GetAxis("Horizontal");
-		float Vertical = Input.GetAxis("Vertical");
-		Vector3 direction = Camera.main.transform.right * Horizontal + Camera.main.transform.forward * Vertical;
-		//direction = Vector3.ProjectOnPlane(direction, Vector3.up);
+				direction.y = 0;
 
-		direction.y = 0;
+				if (direction.magnitude > 1) {
+					direction = direction.normalized;
+					//direction.Normalize();
+				}
+				if (direction.magnitude > 0) {
+					lastDir = direction;
+				}
 
-		if (direction.magnitude > 1) {
-			direction = direction.normalized;
-			//direction.Normalize();
-		}
-		if (direction.magnitude > 0) {
-			lastDir = direction;
-		}
+				Debug.DrawLine(transform.position, transform.position + lastDir * 5, Color.red);
 
-		Debug.DrawLine(transform.position, transform.position + lastDir * 5, Color.red);
+				transform.position += direction * moveSpeed * Time.deltaTime;
+				var nextRotation = Quaternion.identity;
 
-		transform.position += direction * moveSpeed * Time.deltaTime;
-		var nextRotation = Quaternion.identity;
+				if (lastDir.magnitude > 0) {
+					nextRotation = Quaternion.LookRotation(lastDir.normalized, Vector3.up);
+				}
+				
+				if (Input.GetButton("Vertical") || Input.GetButton("Horizontal")) {
+					transform.rotation = Quaternion.Lerp(transform.rotation, nextRotation, smoothTime);
+					moving = true;
+				}
+				else {
+					moving = false;
+				}
 
-		if (lastDir.magnitude > 0) {
-			nextRotation = Quaternion.LookRotation(lastDir.normalized, Vector3.up);
 			}
-
-			if (Input.GetButton("Vertical") || Input.GetButton("Horizontal")) {
-				transform.rotation = Quaternion.Lerp(transform.rotation, nextRotation, smoothTime);
-				moving = true;
-			}
-			else {
-				moving = false;
-			}
-
 		}
 
 		if (moving == true) {
 			pAnim.SetBool("Running", true);
 
-		}else {
+		}
+		else {
 			pAnim.SetBool("Running", false);
 		}
 
-		
+
 
 	}
 }

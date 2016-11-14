@@ -4,6 +4,8 @@ using System.Collections;
 public class PlayerAbilities : MonoBehaviour {
 
 	public bool playDead;
+	public bool pickup;
+	public bool dance;
 
 	float pDedTimer;
 	public float pDedTimerMax;
@@ -64,9 +66,31 @@ public class PlayerAbilities : MonoBehaviour {
 			core = nrg.getPowerCore();
 			if (core != null) {
 				print ("picked up a power core");
+				pickup = true;
+			}
+			else {
+				pickup = false;
+			}
+
+		if (pickup == true && (Input.GetKeyDown(KeyCode.F))) {
+				print("dropped");
 			}
 		}
+
+		if (Input.GetKeyDown(KeyCode.V) && !nrg.getIsDead()) {
+			dance = !dance;
+		}
+
+		if (dance == true) {
+			pAnim.SetBool("dancing",true);
+		} else {
+			pAnim.SetBool("dancing", false);
+		}
 	}
+	public bool getDancing() {
+		return dance;
+	}
+
 	public bool getPlayDead() {
 		return playDead;
 	}
