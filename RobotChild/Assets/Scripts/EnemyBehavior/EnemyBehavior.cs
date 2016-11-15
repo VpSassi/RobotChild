@@ -46,11 +46,11 @@ public class EnemyBehavior : MonoBehaviour {
         pa = player.GetComponent<PlayerAbilities>();
         iiis = GetComponent<IsItInSight>();
         rend = GetComponent<Renderer>();
-        layerMask = ~layerMask;                                                                     //We want our raycasts to ignore selected layers  
+        layerMask = ~layerMask;         //We want our raycasts to ignore selected layers  
     }
 
 	void Update() {
-        audiosource.position = transform.position;  // kuljettaa fabricin audiosourcea
+        //audiosource.position = transform.position;      //kuljettaa fabricin audiosourcea
         countDown -= Time.deltaTime;
         aggroTimer -= Time.deltaTime;
         playerDirection = player.transform.position - transform.position;
@@ -81,7 +81,7 @@ public class EnemyBehavior : MonoBehaviour {
                 }
             }
             if (playerLastPosReached == true) {
-                search.SearchInRadius(navAgent, 15f);
+                rend.material.color = Color.yellow;
             }
         }
         else if (aggroTimer < 0) {
