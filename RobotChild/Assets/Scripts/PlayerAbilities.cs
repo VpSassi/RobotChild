@@ -54,9 +54,11 @@ public class PlayerAbilities : MonoBehaviour {
 
 		if (playDead == true) {
 			pDedTimer += Time.deltaTime;
+			pAnim.SetBool("playDead", true);
 		}
 		else {
 			pDedTimer = 0;
+			pAnim.SetBool("playDead", false);
 		}
 		if (pDedTimer > pDedTimerMax) {
 			nrg.Die();
