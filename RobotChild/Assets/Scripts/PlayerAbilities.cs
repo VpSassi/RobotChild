@@ -50,7 +50,8 @@ public class PlayerAbilities : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Space) && !nrg.getIsDead()) {
 			playDead = !playDead;
             lightValue = lightMin;
-		}		
+		}
+	
 
 		if (playDead == true) {
 			pDedTimer += Time.deltaTime;
@@ -63,6 +64,8 @@ public class PlayerAbilities : MonoBehaviour {
 		if (pDedTimer > pDedTimerMax) {
 			nrg.Die();
 		}
+
+
 
 		if (Input.GetKeyDown(KeyCode.F)) {
 			core = nrg.getPowerCore();
