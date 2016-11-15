@@ -65,7 +65,7 @@ public class Energy : MonoBehaviour {
 
 		if (energyMax < 0) {
 			Die();
-			// Animator set death
+
 		}
 
 		if (energyMax <= 20 && charMov.moving == false && !getIsDead()) {
