@@ -11,8 +11,9 @@ public class EnemyBehavior : MonoBehaviour {
 
     private int destPoint = 0;
     float remainingDistance;
-    float countDown;
+    float lookTimer;
     float aggroTimer;
+    float lookAngle;
     bool lookingForPlayer;
     bool playerLastPosReached;
     enum AIState { Neutral, Alarmed, Chasing};
@@ -22,6 +23,7 @@ public class EnemyBehavior : MonoBehaviour {
     Vector3 direction;
     Vector3 playerDirection;
     Vector3 playerLastPos;
+    Quaternion lookRotation;
 
     Search search;
     PlayerAbilities pa;
@@ -51,7 +53,7 @@ public class EnemyBehavior : MonoBehaviour {
 
 	void Update() {
         //audiosource.position = transform.position;      //kuljettaa fabricin audiosourcea
-        countDown -= Time.deltaTime;
+        lookTimer += Time.deltaTime;
         aggroTimer -= Time.deltaTime;
         playerDirection = player.transform.position - transform.position;
         if (points.Length > 0) {
@@ -82,13 +84,13 @@ public class EnemyBehavior : MonoBehaviour {
             }
             if (playerLastPosReached == true) {
                 rend.material.color = Color.yellow;
+                LookAround();
             }
         }
         else if (aggroTimer < 0) {
             rend.material.color = Color.blue;
             lookingForPlayer = false;
             playerLastPosReached = false;
-            search.searchPoints.Clear();
             navAgent.SetDestination(points[destPoint].position);
         }
 
@@ -108,5 +110,17 @@ public class EnemyBehavior : MonoBehaviour {
 
         destPoint = (destPoint + 1) % points.Length;
         navAgent.SetDestination(points[destPoint].position);
+    }
+
+    void LookAround() {
+        float lookTime = 1.5f;
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 0.1f);
+
+        if (lookTimer > lookTime) {
+            lookAngle = Random.Range(0, 360);
+            lookRotation = Quaternion.Euler(0, lookAngle, 0);
+            lookTimer = 0;
+        }
     }
 }
