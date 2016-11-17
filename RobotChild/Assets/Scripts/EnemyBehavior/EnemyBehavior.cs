@@ -21,14 +21,12 @@ public class EnemyBehavior : MonoBehaviour {
     NavMeshAgent navAgent;
     Renderer rend;
     Vector3 direction;
-    Vector3 playerDirection;
     Vector3 playerLastPos;
     Quaternion lookRotation;
 
     Search search;
     PlayerAbilities pa;
     IsItInSight iiis;
-
 
 
 
@@ -48,18 +46,13 @@ public class EnemyBehavior : MonoBehaviour {
         pa = player.GetComponent<PlayerAbilities>();
         iiis = GetComponent<IsItInSight>();
         rend = GetComponent<Renderer>();
-        layerMask = ~layerMask;         //We want our raycasts to ignore selected layers  
+        layerMask = ~layerMask;         //We want our raycasts to ignore the selected layers  
     }
 
 	void Update() {
         //audiosource.position = transform.position;      //kuljettaa fabricin audiosourcea
         lookTimer += Time.deltaTime;
         aggroTimer -= Time.deltaTime;
-        playerDirection = player.transform.position - transform.position;
-        if (points.Length > 0) {
-            direction = points[destPoint].position - transform.position;
-        }
-        remainingDistance = direction.magnitude;
 
         //Detection behavior
         if (iiis.IsPlayerInSight(gameObject, layerMask)) {
@@ -95,7 +88,8 @@ public class EnemyBehavior : MonoBehaviour {
         }
 
         //Patrol behavior
-        if (remainingDistance < closeEnoughToWP) {
+        direction = points[destPoint].position - transform.position;
+        if (direction.magnitude < closeEnoughToWP) {
             NextWp();
         }
     }
