@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyBehavior : MonoBehaviour {
 
     public Transform audiosource;
-    public float closeEnoughToWP = 1f;
+    public float closeEnough = 1f;
     public float aggroTime;
     public Transform[] points;
     public LayerMask layerMask;
@@ -16,7 +16,6 @@ public class EnemyBehavior : MonoBehaviour {
     float lookAngle;
     bool lookingForPlayer;
     bool playerLastPosReached;
-    enum AIState { Neutral, Alarmed, Chasing};
     GameObject player;
     NavMeshAgent navAgent;
     Renderer rend;
@@ -57,21 +56,20 @@ public class EnemyBehavior : MonoBehaviour {
         //Detection behavior
         if (iiis.IsPlayerInSight(gameObject, layerMask)) {
             playerLastPos = player.transform.position;
-            if (lookingForPlayer) {
-                navAgent.SetDestination(player.transform.position);
+            if (lookingForPlayer) {               
                 aggroTimer = aggroTime;
             }
             else {
-                lookingForPlayer = true;
-                navAgent.SetDestination(player.transform.position);
+                lookingForPlayer = true;               
                 rend.material.color = Color.red;
                 aggroTimer = aggroTime;
             }
+            navAgent.SetDestination(player.transform.position);
         }
         else if (lookingForPlayer == true && aggroTimer > 0) {
             if (playerLastPosReached == false) {
                 navAgent.SetDestination(playerLastPos);
-                if ((playerLastPos - transform.position).magnitude < closeEnoughToWP) {
+                if ((playerLastPos - transform.position).magnitude < closeEnough) {
                     playerLastPosReached = true;
                 }
             }
@@ -89,7 +87,7 @@ public class EnemyBehavior : MonoBehaviour {
 
         //Patrol behavior
         direction = points[destPoint].position - transform.position;
-        if (direction.magnitude < closeEnoughToWP) {
+        if (direction.magnitude < closeEnough) {
             NextWp();
         }
     }
