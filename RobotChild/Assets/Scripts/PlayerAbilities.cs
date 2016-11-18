@@ -52,7 +52,7 @@ public class PlayerAbilities : MonoBehaviour {
 			//print("safe");
 		}
 
-		if (Input.GetKeyDown(KeyCode.Space) && !nrg.getIsDead()) {
+		if (Input.GetButtonDown("playDead") && !nrg.getIsDead()) {
 			playDead = !playDead;
             lightValue = lightMin;
 		}

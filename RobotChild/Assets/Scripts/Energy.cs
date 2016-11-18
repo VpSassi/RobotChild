@@ -84,20 +84,29 @@ public class Energy : MonoBehaviour {
 			charMov.moveSpeed = standardSpeed;
 		}
 
-		if (Input.GetKeyDown(KeyCode.E) & pC != null) {
+		if (Input.GetButtonDown("useEnergy") & pC != null) {
 			energyMax = 100;
 			Destroy(pC.gameObject);
 			Instantiate(pCoreParticle, pC.transform.position, Quaternion.identity);
 		}
 
-		 if (Input.GetKey(KeyCode.LeftShift) && energyMax > 20 && !getIsDead()) {
+		 if (Input.GetAxis("sprint") > 0 && energyMax > 20 && !getIsDead() && charMov.moving == true) {
 			charMov.moveSpeed = sprintSpeed;
 			pAnim.SetBool("sprint", true);
+			eTotTime = 1;
+
 		}
-		else if (energyMax > 20){
+		else if (energyMax > 20 || charMov.moving == false){
 			charMov.moveSpeed = standardSpeed;
 			pAnim.SetBool("sprint", false);
-		} 
+			eTotTime = 2;
+		}
+		else if( energyMax < 20) {
+			charMov.moveSpeed = lowPowerSpeed;
+			pAnim.SetBool("sprint", false);
+			eTotTime = 2;
+		}
+		 
 	}
 
 	public void Die() {

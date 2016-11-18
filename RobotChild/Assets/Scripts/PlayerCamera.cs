@@ -23,8 +23,8 @@ public class PlayerCamera : MonoBehaviour {
 		cam = Camera.main;
 	}
 	void Update() {
-		currentX += Input.GetAxis("Mouse X");
-		currentY += Input.GetAxis("Mouse Y");
+		currentX += Input.GetAxis("Mouse X") + Input.GetAxis("Horizontal R");
+		currentY += Input.GetAxis("Mouse Y") + Input.GetAxis("Vertical R");
 
 		currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
 		Vector3 dir = new Vector3(0, 0, -distance);
