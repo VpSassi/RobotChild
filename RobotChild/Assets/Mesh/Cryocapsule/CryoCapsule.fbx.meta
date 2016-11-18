@@ -1,0 +1,133 @@
+fileFormatVersion: 2
+guid: 42353f7cc90464735bb57b2de4f917b4
+timeCreated: 1479389704
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: CapsuleDoor
+    100002: CapsuleDoorFrame
+    100004: CapsuleDoorSeal
+    100006: CapsuleDoorWindowInside
+    100008: CapsuleDoorWindowOutside
+    100010: CapsuleDoorWindowSeal
+    100012: //RootNode
+    100014: CryoCapsule 1
+    100016: Cryocapsule_base
+    100018: CryoCapsuleRailBottom
+    100020: CryoCapsuleRailTop
+    100022: DoorSlide
+    100024: DoorSlideBox
+    400000: CapsuleDoor
+    400002: CapsuleDoorFrame
+    400004: CapsuleDoorSeal
+    400006: CapsuleDoorWindowInside
+    400008: CapsuleDoorWindowOutside
+    400010: CapsuleDoorWindowSeal
+    400012: //RootNode
+    400014: CryoCapsule 1
+    400016: Cryocapsule_base
+    400018: CryoCapsuleRailBottom
+    400020: CryoCapsuleRailTop
+    400022: DoorSlide
+    400024: DoorSlideBox
+    2300000: CapsuleDoor
+    2300002: CapsuleDoorFrame
+    2300004: CapsuleDoorSeal
+    2300006: CapsuleDoorWindowInside
+    2300008: CapsuleDoorWindowOutside
+    2300010: CapsuleDoorWindowSeal
+    2300012: CryoCapsule 1
+    2300014: Cryocapsule_base
+    2300016: CryoCapsuleRailBottom
+    2300018: CryoCapsuleRailTop
+    2300020: DoorSlide
+    2300022: DoorSlideBox
+    3300000: CapsuleDoor
+    3300002: CapsuleDoorFrame
+    3300004: CapsuleDoorSeal
+    3300006: CapsuleDoorWindowInside
+    3300008: CapsuleDoorWindowOutside
+    3300010: CapsuleDoorWindowSeal
+    3300012: CryoCapsule 1
+    3300014: Cryocapsule_base
+    3300016: CryoCapsuleRailBottom
+    3300018: CryoCapsuleRailTop
+    3300020: DoorSlide
+    3300022: DoorSlideBox
+    4300000: CapsuleDoor
+    4300002: CapsuleDoorWindowSeal
+    4300004: CapsuleDoorWindowOutside
+    4300006: CapsuleDoorWindowInside
+    4300008: CapsuleDoorSeal
+    4300010: DoorSlide
+    4300012: CapsuleDoorFrame
+    4300014: DoorSlideBox
+    4300016: CryoCapsule
+    4300018: Cryocapsule_base
+    4300020: CryoCapsuleRailTop
+    4300022: CryoCapsuleRailBottom
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
