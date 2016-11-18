@@ -4,29 +4,28 @@ using System.Collections;
 public class EnemyBehavior : MonoBehaviour {
 
     public Transform audiosource;
-    public float closeEnoughToWP = 1f;
+    public float closeEnough = 1f;
     public float aggroTime;
     public Transform[] points;
     public LayerMask layerMask;
 
     private int destPoint = 0;
     float remainingDistance;
-    float countDown;
+    float lookTimer;
     float aggroTimer;
+    float lookAngle;
     bool lookingForPlayer;
     bool playerLastPosReached;
-    enum AIState { Neutral, Alarmed, Chasing};
     GameObject player;
     NavMeshAgent navAgent;
     Renderer rend;
     Vector3 direction;
-    Vector3 playerDirection;
     Vector3 playerLastPos;
+    Quaternion lookRotation;
 
     Search search;
     PlayerAbilities pa;
     IsItInSight iiis;
-
 
 
 
@@ -46,54 +45,49 @@ public class EnemyBehavior : MonoBehaviour {
         pa = player.GetComponent<PlayerAbilities>();
         iiis = GetComponent<IsItInSight>();
         rend = GetComponent<Renderer>();
-        layerMask = ~layerMask;                                                                     //We want our raycasts to ignore selected layers  
+        layerMask = ~layerMask;         //We want our raycasts to ignore the selected layers  
     }
 
 	void Update() {
-        audiosource.position = transform.position;  // kuljettaa fabricin audiosourcea
-        countDown -= Time.deltaTime;
+        //audiosource.position = transform.position;      //kuljettaa fabricin audiosourcea
+        lookTimer += Time.deltaTime;
         aggroTimer -= Time.deltaTime;
-        playerDirection = player.transform.position - transform.position;
-        if (points.Length > 0) {
-            direction = points[destPoint].position - transform.position;
-        }
-        remainingDistance = direction.magnitude;
 
         //Detection behavior
         if (iiis.IsPlayerInSight(gameObject, layerMask)) {
             playerLastPos = player.transform.position;
-            if (lookingForPlayer) {
-                navAgent.SetDestination(player.transform.position);
+            if (lookingForPlayer) {               
                 aggroTimer = aggroTime;
             }
             else {
-                lookingForPlayer = true;
-                navAgent.SetDestination(player.transform.position);
+                lookingForPlayer = true;               
                 rend.material.color = Color.red;
                 aggroTimer = aggroTime;
             }
+            navAgent.SetDestination(player.transform.position);
         }
         else if (lookingForPlayer == true && aggroTimer > 0) {
             if (playerLastPosReached == false) {
                 navAgent.SetDestination(playerLastPos);
-                if ((playerLastPos - transform.position).magnitude < closeEnoughToWP) {
+                if ((playerLastPos - transform.position).magnitude < closeEnough) {
                     playerLastPosReached = true;
                 }
             }
             if (playerLastPosReached == true) {
-                search.SearchInRadius(navAgent, 15f);
+                rend.material.color = Color.yellow;
+                LookAround();
             }
         }
         else if (aggroTimer < 0) {
             rend.material.color = Color.blue;
             lookingForPlayer = false;
             playerLastPosReached = false;
-            search.searchPoints.Clear();
             navAgent.SetDestination(points[destPoint].position);
         }
 
         //Patrol behavior
-        if (remainingDistance < closeEnoughToWP) {
+        direction = points[destPoint].position - transform.position;
+        if (direction.magnitude < closeEnough) {
             NextWp();
         }
     }
@@ -108,5 +102,17 @@ public class EnemyBehavior : MonoBehaviour {
 
         destPoint = (destPoint + 1) % points.Length;
         navAgent.SetDestination(points[destPoint].position);
+    }
+
+    void LookAround() {
+        float lookTime = 1.5f;
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 0.1f);
+
+        if (lookTimer > lookTime) {
+            lookAngle = Random.Range(0, 360);
+            lookRotation = Quaternion.Euler(0, lookAngle, 0);
+            lookTimer = 0;
+        }
     }
 }
