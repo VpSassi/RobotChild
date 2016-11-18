@@ -88,7 +88,8 @@ public class Energy : MonoBehaviour {
 			energyMax = 100;
 			Destroy(pC.gameObject);
 			Instantiate(pCoreParticle, pC.transform.position, Quaternion.identity);
-		}
+            Fabric.EventManager.Instance.PostEvent("EnergySFX");
+        }
 
 		 if (Input.GetKey(KeyCode.LeftShift) && energyMax > 20 && !getIsDead()) {
 			charMov.moveSpeed = sprintSpeed;

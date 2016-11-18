@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: d0e765e7524d3be409f0235dde2fbafd
-timeCreated: 1479208439
-=======
-guid: 79dee37a9300b1a4c99f6bbde400c240
-timeCreated: 1479201976
->>>>>>> b68d2a199203e865ae5291f887aa95db4c87ec1f
-licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -176,13 +169,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-<<<<<<< HEAD
       loopTime: 0
       loopBlend: 0
-=======
-      loopTime: 1
-      loopBlend: 1
->>>>>>> b68d2a199203e865ae5291f887aa95db4c87ec1f
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -333,7 +321,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
