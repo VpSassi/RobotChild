@@ -72,7 +72,7 @@ public class PlayerAbilities : MonoBehaviour {
 
 
 
-		if (Input.GetKeyDown(KeyCode.F)) {
+		if (Input.GetButton("pickUp")) {
 			core = nrg.getPowerCore();
 			if (core != null) {
 				print ("picked up a power core");
