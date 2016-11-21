@@ -42,7 +42,7 @@ public class CharacterMovement : MonoBehaviour {
 		}
 
 		if (!pA.getDancing()) {
-			if (!pA.getPlayDead()) {
+			if (!pA.getPlayDead() ) {
 
 				float Horizontal = Input.GetAxis("Horizontal");
 				float Vertical = Input.GetAxis("Vertical");
@@ -68,7 +68,7 @@ public class CharacterMovement : MonoBehaviour {
 					nextRotation = Quaternion.LookRotation(lastDir.normalized, Vector3.up);
 				}
 				
-				if (Input.GetButton("Vertical") || Input.GetButton("Horizontal")) {
+				if (Input.GetAxis("Vertical") != 0|| Input.GetAxis("Horizontal") != 0) {
 					transform.rotation = Quaternion.Lerp(transform.rotation, nextRotation, smoothTime);
 					moving = true;
 				}

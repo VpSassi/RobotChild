@@ -35,7 +35,12 @@ public class PlayerAbilities : MonoBehaviour {
 
 		lightValue += Input.GetAxis("Mouse ScrollWheel") * lightAdd;
 
-		lightValue = Mathf.Clamp(lightValue, lightMin, lightMax);
+        if (playDead) {
+            lightValue = 0;
+        }
+        else {
+            lightValue = Mathf.Clamp(lightValue, lightMin, lightMax);
+        }
 
 		debugSphere.localScale = new Vector3(lightValue * 2, lightValue * 2, lightValue * 2);
 		Debug.DrawRay(transform.position, (enemy.transform.position - transform.position).normalized * lightValue);
@@ -47,10 +52,11 @@ public class PlayerAbilities : MonoBehaviour {
 			//print("safe");
 		}
 
-		if (Input.GetKeyDown(KeyCode.Space) && !nrg.getIsDead()) {
+		if (Input.GetButtonDown("playDead") && !nrg.getIsDead()) {
 			playDead = !playDead;
             lightValue = lightMin;
-		}		
+		}
+	
 
 		if (playDead == true) {
 			pDedTimer += Time.deltaTime;
@@ -64,7 +70,9 @@ public class PlayerAbilities : MonoBehaviour {
 			nrg.Die();
 		}
 
-		if (Input.GetKeyDown(KeyCode.F)) {
+
+
+		if (Input.GetButton("pickUp")) {
 			core = nrg.getPowerCore();
 			if (core != null) {
 				print ("picked up a power core");
