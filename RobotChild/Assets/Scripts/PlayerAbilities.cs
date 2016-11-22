@@ -7,6 +7,10 @@ public class PlayerAbilities : MonoBehaviour {
 	public bool pickup;
 	public bool dance;
 
+	bool standingUpBool;
+	float standUpTime;
+	public float standUpTotTime;
+
 	float pDedTimer;
 	public float pDedTimerMax;
 
@@ -56,9 +60,18 @@ public class PlayerAbilities : MonoBehaviour {
 			playDead = !playDead;
             lightValue = lightMin;
 		}
-	
+		/*
+		if (Input.GetButtonDown("playDead") && !nrg.getIsDead() && playDead == true) {
+			standUpTime += Time.deltaTime;
+			standingUpBool = true;
+		}
 
-		if (playDead == true) {
+		if (standUpTime > standUpTotTime) {
+			standUpTime -= standUpTotTime;
+			standingUpBool = false;
+			print("bing");
+		} */
+			if (playDead == true) {
 			pDedTimer += Time.deltaTime;
 			pAnim.SetBool("playDead", true);
 		}
@@ -103,5 +116,9 @@ public class PlayerAbilities : MonoBehaviour {
 
 	public bool getPlayDead() {
 		return playDead;
+	}
+
+	public bool getStandingUp() {
+		return standingUpBool;
 	}
 }
