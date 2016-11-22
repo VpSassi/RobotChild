@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 24d4de3363088644b9f8307f525e0da9
-timeCreated: 1479808071
+guid: 466aaefeecaed6e4db86930037de3efb
+timeCreated: 1479813755
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -164,7 +164,7 @@ ModelImporter:
       name: mixamo.com
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 654
+      lastFrame: 78
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
