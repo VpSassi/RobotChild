@@ -42,7 +42,7 @@ public class CharacterMovement : MonoBehaviour {
 		}
 
 		if (!pA.getDancing()) {
-			if (!pA.getPlayDead() ) {
+			if (!pA.getPlayDead()) {
 
 				float Horizontal = Input.GetAxis("Horizontal");
 				float Vertical = Input.GetAxis("Vertical");

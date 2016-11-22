@@ -84,14 +84,17 @@ public class Energy : MonoBehaviour {
 			charMov.moveSpeed = standardSpeed;
 		}
 
-		if (Input.GetButtonDown("useEnergy") & pC != null) {
+		if (Input.GetButtonDown("useEnergy") & pC != null && !getIsDead()) {
 			energyMax = 100;
 			Destroy(pC.gameObject);
 			Instantiate(pCoreParticle, pC.transform.position, Quaternion.identity);
             Fabric.EventManager.Instance.PostEvent("EnergySFX");
-        }
+			pAnim.SetBool("usePcore", true);
+		}else {
+			pAnim.SetBool("usePcore", false);
+		}
 
-		 if (Input.GetAxis("sprint") > 0 && energyMax > 20 && !getIsDead() && charMov.moving == true) {
+		if (Input.GetAxis("sprint") > 0 && energyMax > 20 && !getIsDead() && charMov.moving == true) {
 			charMov.moveSpeed = sprintSpeed;
 			pAnim.SetBool("sprint", true);
 			eTotTime = 1;
