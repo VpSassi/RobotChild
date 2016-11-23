@@ -7,6 +7,10 @@ public class Energy : MonoBehaviour {
 	float eTimer;
 	public float eTotTime;
 
+	bool energyAnimBool;
+	float useEnergyAnimTimer;
+	public float useEnergyAnimTotTimer;
+
 	public float lowPowerSpeed;
 	public float standardSpeed;
 	public float sprintSpeed;
@@ -84,12 +88,23 @@ public class Energy : MonoBehaviour {
 			charMov.moveSpeed = standardSpeed;
 		}
 
+		if (energyAnimBool == true) {
+			useEnergyAnimTimer += Time.deltaTime;
+		}
+
+		if (useEnergyAnimTimer > useEnergyAnimTotTimer) {
+			useEnergyAnimTimer -= useEnergyAnimTotTimer;
+			energyAnimBool = false;
+			print("animDone");
+		}
+
 		if (Input.GetButtonDown("useEnergy") & pC != null && !getIsDead()) {
 			energyMax = 100;
 			Destroy(pC.gameObject);
 			Instantiate(pCoreParticle, pC.transform.position, Quaternion.identity);
-            Fabric.EventManager.Instance.PostEvent("EnergySFX");
+            Fabric.EventManager.Instance.PostEvent("PowerUp");
 			pAnim.SetBool("usePcore", true);
+			energyAnimBool = true;
 		}else {
 			pAnim.SetBool("usePcore", false);
 		}
@@ -121,5 +136,9 @@ public class Energy : MonoBehaviour {
 
 	public bool getIsDead() {
 		return isDead;
+	}
+
+	public bool getEnergyAnimBool() {
+		return energyAnimBool;
 	}
 }
