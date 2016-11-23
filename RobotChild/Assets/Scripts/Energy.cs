@@ -102,11 +102,11 @@ public class Energy : MonoBehaviour {
 			energyMax = 100;
 			Destroy(pC.gameObject);
 			Instantiate(pCoreParticle, pC.transform.position, Quaternion.identity);
-            Fabric.EventManager.Instance.PostEvent("EnergySFX");
-			pAnim.SetBool("pickUp", true);
+            Fabric.EventManager.Instance.PostEvent("PowerUp");
+			pAnim.SetBool("usePcore", true);
 			energyAnimBool = true;
 		}else {
-			pAnim.SetBool("pickUp", false);
+			pAnim.SetBool("usePcore", false);
 		}
 
 		if (Input.GetAxis("sprint") > 0 && energyMax > 20 && !getIsDead() && charMov.moving == true) {

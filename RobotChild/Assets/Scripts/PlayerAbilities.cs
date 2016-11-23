@@ -90,7 +90,8 @@ public class PlayerAbilities : MonoBehaviour {
 			if (core != null) {
 				print ("picked up a power core");
 				pickup = true;
-			}
+                Fabric.EventManager.Instance.PostEvent("PickUp");
+            }
 			else {
 				pickup = false;
 			}
