@@ -7,6 +7,10 @@ public class PlayerAbilities : MonoBehaviour {
 	public bool pickup;
 	public bool dance;
 
+	public bool pickUpAnimBool;
+	float pickUpAnimTimer;
+	public float pickUpAnimTotTimer;
+
 	bool standingUpBool;
 	float standUpTime;
 	public float standUpTotTime;
@@ -83,17 +87,28 @@ public class PlayerAbilities : MonoBehaviour {
 			nrg.Die();
 		}
 
+		if (pickUpAnimBool == true) {
+			pickUpAnimTimer += Time.deltaTime;
+		}
 
+		if (pickUpAnimTimer > pickUpAnimTotTimer) {
+			pickUpAnimTimer -= pickUpAnimTotTimer;
+			pickUpAnimBool = false;
+		}
 
 		if (Input.GetButton("pickUp")) {
 			core = nrg.getPowerCore();
 			if (core != null) {
+				Destroy(core.gameObject);
 				print ("picked up a power core");
 				pickup = true;
                 Fabric.EventManager.Instance.PostEvent("PickUp");
+				pAnim.SetBool("pickUp", true);
+			    pickUpAnimBool = true;
             }
 			else {
 				pickup = false;
+				pAnim.SetBool("pickUp", false);
 			}
 
 		if (pickup == true && (Input.GetKeyDown(KeyCode.F))) {
@@ -121,5 +136,9 @@ public class PlayerAbilities : MonoBehaviour {
 
 	public bool getStandingUp() {
 		return standingUpBool;
+	}
+
+	public bool getpickUpAnim() {
+		return pickUpAnimBool;
 	}
 }

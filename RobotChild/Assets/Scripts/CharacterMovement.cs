@@ -41,46 +41,43 @@ public class CharacterMovement : MonoBehaviour {
 			return;
 		}
 
-		// if (!pA.getStandingUp()) { }
-		 if (!enrg.getEnergyAnimBool()) { 
-		  if (!pA.getDancing()) {
-			if (!pA.getPlayDead()) {
 
-				float Horizontal = Input.GetAxis("Horizontal");
-				float Vertical = Input.GetAxis("Vertical");
-				Vector3 direction = Camera.main.transform.right * Horizontal + Camera.main.transform.forward * Vertical;
-				//direction = Vector3.ProjectOnPlane(direction, Vector3.up);
+		if (!pA.getPlayDead() && !pA.getDancing() && !enrg.getEnergyAnimBool() && !pA.getpickUpAnim()) {
 
-				direction.y = 0;
+			float Horizontal = Input.GetAxis("Horizontal");
+			float Vertical = Input.GetAxis("Vertical");
+			Vector3 direction = Camera.main.transform.right * Horizontal + Camera.main.transform.forward * Vertical;
+			//direction = Vector3.ProjectOnPlane(direction, Vector3.up);
 
-				if (direction.magnitude > 1) {
-					direction = direction.normalized;
-					//direction.Normalize();
-				}
-				if (direction.magnitude > 0) {
-					lastDir = direction;
-				}
+			direction.y = 0;
 
-				Debug.DrawLine(transform.position, transform.position + lastDir * 5, Color.red);
-
-				transform.position += direction * moveSpeed * Time.deltaTime;
-				var nextRotation = Quaternion.identity;
-
-				if (lastDir.magnitude > 0) {
-					nextRotation = Quaternion.LookRotation(lastDir.normalized, Vector3.up);
-				}
-				
-				if (Input.GetAxis("Vertical") != 0|| Input.GetAxis("Horizontal") != 0) {
-					transform.rotation = Quaternion.Lerp(transform.rotation, nextRotation, smoothTime);
-					moving = true;
-				}
-				else {
-					moving = false;
-				}
-
+			if (direction.magnitude > 1) {
+				direction = direction.normalized;
+				//direction.Normalize();
 			}
+			if (direction.magnitude > 0) {
+				lastDir = direction;
+			}
+
+			Debug.DrawLine(transform.position, transform.position + lastDir * 5, Color.red);
+
+			transform.position += direction * moveSpeed * Time.deltaTime;
+			var nextRotation = Quaternion.identity;
+
+			if (lastDir.magnitude > 0) {
+				nextRotation = Quaternion.LookRotation(lastDir.normalized, Vector3.up);
+			}
+
+			if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) {
+				transform.rotation = Quaternion.Lerp(transform.rotation, nextRotation, smoothTime);
+				moving = true;
+			}
+			else {
+				moving = false;
+			}
+
 		}
-    } 
+
 		if (moving == true) {
 			pAnim.SetBool("Running", true);
 
