@@ -3,6 +3,8 @@ using System.Collections;
 
 public class IsItInSight : MonoBehaviour {
 
+    public float detectionAngle;
+
     GameObject player;
     PlayerAbilities pa;
 
@@ -22,7 +24,7 @@ public class IsItInSight : MonoBehaviour {
     public bool IsPlayerInSight(GameObject observer, LayerMask rayMask) {
         Vector3 playerDirection = player.transform.position - observer.transform.position;
 
-        if (!Physics.Raycast(transform.position, playerDirection, playerDirection.magnitude, rayMask) && playerDirection.magnitude < pa.lightValue) {
+        if (!Physics.Raycast(transform.position, playerDirection, playerDirection.magnitude, rayMask) && (playerDirection.magnitude < pa.lightValue) && (Vector3.Angle(transform.forward, player.transform.position - transform.position) < detectionAngle)) {
             return true;
         }
         else {

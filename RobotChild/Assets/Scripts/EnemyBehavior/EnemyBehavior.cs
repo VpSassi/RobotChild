@@ -90,6 +90,11 @@ public class EnemyBehavior : MonoBehaviour {
         if (direction.magnitude < closeEnough) {
             NextWp();
         }
+
+        //Player/Cannibal angle debugging
+        print(Vector3.Angle(transform.forward, player.transform.position - transform.position));
+        Debug.DrawRay(transform.position, transform.forward * 10);
+        Debug.DrawRay(transform.position, player.transform.position - transform.position);
     }
 
 
