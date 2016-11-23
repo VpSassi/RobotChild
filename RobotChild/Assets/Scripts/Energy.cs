@@ -102,7 +102,7 @@ public class Energy : MonoBehaviour {
 			energyMax = 100;
 			Destroy(pC.gameObject);
 			Instantiate(pCoreParticle, pC.transform.position, Quaternion.identity);
-            Fabric.EventManager.Instance.PostEvent("EnergySFX");
+            Fabric.EventManager.Instance.PostEvent("PowerUp");
 			pAnim.SetBool("usePcore", true);
 			energyAnimBool = true;
 		}else {
