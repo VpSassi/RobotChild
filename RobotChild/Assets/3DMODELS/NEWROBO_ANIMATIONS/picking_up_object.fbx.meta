@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 5e34096bc6b565f44b524210d0ff808a
+timeCreated: 1479888609
+=======
 guid: 466aaefeecaed6e4db86930037de3efb
 timeCreated: 1479813755
+>>>>>>> 61899addfe97467c3bd4c4501bf5cd8697cc8581
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -159,6 +164,9 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+<<<<<<< HEAD
+    clipAnimations: []
+=======
     clipAnimations:
     - serializedVersion: 16
       name: mixamo.com
@@ -320,6 +328,7 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+>>>>>>> 61899addfe97467c3bd4c4501bf5cd8697cc8581
     isReadable: 1
   meshes:
     lODScreenPercentages: []
