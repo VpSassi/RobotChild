@@ -20,7 +20,7 @@ public class TriggeriScripti : MonoBehaviour
     {
         if (eb.isChasing == true) {
         mix1.TransitionTo(transitiontime);
-        print("triggasi");
+       // print("triggasi");
         }
    
         }
