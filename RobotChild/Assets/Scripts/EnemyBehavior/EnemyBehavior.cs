@@ -27,8 +27,6 @@ public class EnemyBehavior : MonoBehaviour {
     PlayerAbilities pa;
     IsItInSight iiis;
 
-	public bool isChasing; //for audio
-
 
 
 
@@ -60,14 +58,16 @@ public class EnemyBehavior : MonoBehaviour {
             rend.material.color = Color.red;
             playerLastPos = player.transform.position;
             navAgent.SetDestination(player.transform.position);
-			isChasing = true;
+            if ((player.transform.position - transform.position).magnitude < closeEnough) {
+                rend.material.color = Color.black;
+                Fabric.EventManager.Instance.PostEvent("AttackMusic");
+            }
             if (lookingForPlayer) {               
                 aggroTimer = aggroTime;
             }
             else {
                 lookingForPlayer = true;               
                 aggroTimer = aggroTime;
-				isChasing = false;
             }
         }
         else if (lookingForPlayer == true && aggroTimer > 0) {

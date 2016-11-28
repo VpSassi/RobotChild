@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a129c5c694047b746a3d93bb651a0a18
+timeCreated: 1473672072
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - mix1: {fileID: 245000012571942102, guid: 304a7ecc2c2784af584fb388f6e726cf, type: 2}
+  - mix2: {instanceID: 0}
+  - mix3: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
