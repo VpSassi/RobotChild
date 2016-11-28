@@ -19,7 +19,7 @@ public class AcquireTarget : MonoBehaviour {
     }
 
     void Update() {
-        print(ClosestChild());
+        //print(ClosestChild());
     }
 
 

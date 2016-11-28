@@ -17,15 +17,17 @@ public class EnemyBehavior : MonoBehaviour {
     bool lookingForPlayer;
     bool playerLastPosReached;
     GameObject player;
+    GameObject robotChild;
     NavMeshAgent navAgent;
     Renderer rend;
     Vector3 direction;
-    Vector3 playerLastPos;
+    Vector3 robotChildLastPos;
     Quaternion lookRotation;
 
     Search search;
     PlayerAbilities pa;
     IsItInSight iiis;
+    AcquireTarget at;
 
 
 	public bool isChasing;
@@ -44,11 +46,14 @@ public class EnemyBehavior : MonoBehaviour {
         search = GetComponent<Search>();
         pa = player.GetComponent<PlayerAbilities>();
         iiis = GetComponent<IsItInSight>();
+        at = GetComponent<AcquireTarget>();
         rend = GetComponent<Renderer>();
         layerMask = ~layerMask;         //We want our raycasts to ignore the selected layers  
     }
 
 	void Update() {
+        robotChild = at.ClosestChild();
+
         //audiosource.position = transform.position;      //kuljettaa fabricin audiosourcea
         lookTimer += Time.deltaTime;
         aggroTimer -= Time.deltaTime;
@@ -56,10 +61,10 @@ public class EnemyBehavior : MonoBehaviour {
         //Detection behavior
         if (iiis.IsPlayerInSight(gameObject, layerMask)) {
             rend.material.color = Color.red;
-            playerLastPos = player.transform.position;
-            navAgent.SetDestination(player.transform.position);
+            robotChildLastPos = robotChild.transform.position;
+            navAgent.SetDestination(robotChild.transform.position);
 			isChasing = true;
-            if ((player.transform.position - transform.position).magnitude < closeEnough) {
+            if ((robotChild.transform.position - transform.position).magnitude < closeEnough) {
                 rend.material.color = Color.black;
                 //Fabric.EventManager.Instance.PostEvent("AttackMusic");
             }
@@ -74,8 +79,8 @@ public class EnemyBehavior : MonoBehaviour {
         }
         else if (lookingForPlayer == true && aggroTimer > 0) {
             if (playerLastPosReached == false) {
-                navAgent.SetDestination(playerLastPos);
-                if ((playerLastPos - transform.position).magnitude < closeEnough) {
+                navAgent.SetDestination(robotChildLastPos);
+                if ((robotChildLastPos - transform.position).magnitude < closeEnough) {
                     playerLastPosReached = true;
                 }
             }

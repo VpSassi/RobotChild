@@ -62,7 +62,7 @@ public class PlayerAbilities : MonoBehaviour {
 			lightValue -= lightAdd * Time.deltaTime;
 		}
 
-		print(lightValue);
+		//print(lightValue);
 
 		lightValue += Input.GetAxis("Mouse ScrollWheel") * lightAdd;
 		lightValue = Mathf.Clamp(lightValue, lightMin, lightMax);
