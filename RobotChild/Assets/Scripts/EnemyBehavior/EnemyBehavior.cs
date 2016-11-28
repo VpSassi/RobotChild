@@ -55,16 +55,16 @@ public class EnemyBehavior : MonoBehaviour {
 
         //Detection behavior
         if (iiis.IsPlayerInSight(gameObject, layerMask)) {
+            rend.material.color = Color.red;
             playerLastPos = player.transform.position;
+            navAgent.SetDestination(player.transform.position);
             if (lookingForPlayer) {               
                 aggroTimer = aggroTime;
             }
             else {
                 lookingForPlayer = true;               
-                rend.material.color = Color.red;
                 aggroTimer = aggroTime;
             }
-            navAgent.SetDestination(player.transform.position);
         }
         else if (lookingForPlayer == true && aggroTimer > 0) {
             if (playerLastPosReached == false) {
