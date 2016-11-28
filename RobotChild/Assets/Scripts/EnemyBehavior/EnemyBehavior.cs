@@ -60,7 +60,7 @@ public class EnemyBehavior : MonoBehaviour {
             navAgent.SetDestination(player.transform.position);
             if ((player.transform.position - transform.position).magnitude < closeEnough) {
                 rend.material.color = Color.black;
-                Fabric.EventManager.Instance.PostEvent("AttackMusic");
+                //Fabric.EventManager.Instance.PostEvent("AttackMusic");
             }
             if (lookingForPlayer) {               
                 aggroTimer = aggroTime;

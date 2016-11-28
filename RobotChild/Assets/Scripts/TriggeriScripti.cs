@@ -13,9 +13,10 @@ public class TriggeriScripti : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Fabric.EventManager.Instance.PostEvent("play music"); // kaikki träkit ruoeavat soimaan startissa
+        Fabric.EventManager.Instance.PostEvent("BasicMusic"); // kaikki träkit ruoeavat soimaan startissa
     }
-    void OnTriggerEnter(Collider c) 
+   // void OnTriggerEnter(Collider c) 
+
     {
     
         mix1.TransitionTo(transitiontime);
