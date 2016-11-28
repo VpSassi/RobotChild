@@ -22,6 +22,10 @@ public class TriggeriScripti : MonoBehaviour
         mix1.TransitionTo(transitiontime);
        // print("triggasi");
         }
+        else if (eb.isChasing == false)
+        {
+            mix2.TransitionTo(transitiontime);
+        }
    
         }
 
