@@ -18,6 +18,8 @@ public class PlayerAbilities : MonoBehaviour {
 	float pDedTimer;
 	public float pDedTimerMax;
 
+	public int keyCount;
+
 	public GameObject enemy;
 
 	public Transform debugSphere;
@@ -25,6 +27,7 @@ public class PlayerAbilities : MonoBehaviour {
 	Energy nrg;
 	CharacterMovement cM;
 	powerCore core;
+	Key key;
 
 	public float lightMax;
 	public float lightMin;
@@ -32,6 +35,14 @@ public class PlayerAbilities : MonoBehaviour {
 	public float lightAdd;
 
 	public Animator pAnim;
+
+	public void setKey(Key bling) {
+		key = bling;
+	}
+
+	public Key getThisKey() {
+		return key;
+	}
 
 	void Start() {
 		nrg = GetComponent<Energy>();
@@ -98,21 +109,21 @@ public class PlayerAbilities : MonoBehaviour {
 
 		if (Input.GetButton("pickUp")) {
 			core = nrg.getPowerCore();
-			if (core != null) {
-				Destroy(core.gameObject);
-				print ("picked up a power core");
+			key = getThisKey();
+			//print(keyCount);
+			if (key != null) {
+				Destroy(key.gameObject);
+				//print ("picked up a key");
 				pickup = true;
                 Fabric.EventManager.Instance.PostEvent("PickUp");
 				pAnim.SetBool("pickUp", true);
 			    pickUpAnimBool = true;
+				keyCount += 1;
             }
+
 			else {
 				pickup = false;
 				pAnim.SetBool("pickUp", false);
-			}
-
-		if (pickup == true && (Input.GetKeyDown(KeyCode.F))) {
-				print("dropped");
 			}
 		}
 
