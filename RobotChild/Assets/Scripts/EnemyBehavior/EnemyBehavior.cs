@@ -61,7 +61,7 @@ public class EnemyBehavior : MonoBehaviour {
 			isChasing = true;
             if ((player.transform.position - transform.position).magnitude < closeEnough) {
                 rend.material.color = Color.black;
-                Fabric.EventManager.Instance.PostEvent("AttackMusic");
+                //Fabric.EventManager.Instance.PostEvent("AttackMusic");
             }
             if (lookingForPlayer) {               
                 aggroTimer = aggroTime;
@@ -69,7 +69,7 @@ public class EnemyBehavior : MonoBehaviour {
             else {
                 lookingForPlayer = true;               
                 aggroTimer = aggroTime;
-				isChasing = false;
+				
             }
         }
         else if (lookingForPlayer == true && aggroTimer > 0) {
@@ -89,6 +89,7 @@ public class EnemyBehavior : MonoBehaviour {
             lookingForPlayer = false;
             playerLastPosReached = false;
             navAgent.SetDestination(points[destPoint].position);
+            isChasing = false;
         }
 
         //Patrol behavior

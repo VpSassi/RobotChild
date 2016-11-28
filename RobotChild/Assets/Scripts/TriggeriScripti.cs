@@ -9,17 +9,23 @@ public class TriggeriScripti : MonoBehaviour
     public AudioMixerSnapshot mix2;
     public AudioMixerSnapshot mix3;
     public float transitiontime;
-
+    EnemyBehavior eb; 
     // Use this for initialization
     void Start()
     {
-        Fabric.EventManager.Instance.PostEvent("play music"); // kaikki träkit ruoeavat soimaan startissa
+        eb = GameObject.Find("Cannibal").GetComponent<EnemyBehavior>();
+        Fabric.EventManager.Instance.PostEvent("BasicMusic"); // kaikki träkit ruoeavat soimaan startissa
     }
-    void OnTriggerEnter(Collider c) 
+    void Update()
     {
-    
+        if (eb.isChasing == true) {
         mix1.TransitionTo(transitiontime);
-        print("triggasi");
+       // print("triggasi");
+        }
+        else if (eb.isChasing == false)
+        {
+            mix2.TransitionTo(transitiontime);
+        }
    
         }
 
