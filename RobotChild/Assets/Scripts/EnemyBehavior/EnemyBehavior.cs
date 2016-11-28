@@ -28,7 +28,7 @@ public class EnemyBehavior : MonoBehaviour {
     IsItInSight iiis;
 
 
-
+	public bool isChasing;
 
 
     // TODO: also support turning around at last WP?
@@ -58,6 +58,7 @@ public class EnemyBehavior : MonoBehaviour {
             rend.material.color = Color.red;
             playerLastPos = player.transform.position;
             navAgent.SetDestination(player.transform.position);
+			isChasing = true;
             if ((player.transform.position - transform.position).magnitude < closeEnough) {
                 rend.material.color = Color.black;
                 Fabric.EventManager.Instance.PostEvent("AttackMusic");
@@ -68,6 +69,7 @@ public class EnemyBehavior : MonoBehaviour {
             else {
                 lookingForPlayer = true;               
                 aggroTimer = aggroTime;
+				isChasing = false;
             }
         }
         else if (lookingForPlayer == true && aggroTimer > 0) {
