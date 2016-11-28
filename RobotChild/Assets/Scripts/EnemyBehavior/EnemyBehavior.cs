@@ -52,6 +52,7 @@ public class EnemyBehavior : MonoBehaviour {
         //audiosource.position = transform.position;      //kuljettaa fabricin audiosourcea
         lookTimer += Time.deltaTime;
         aggroTimer -= Time.deltaTime;
+        print(isChasing);
 
         //Detection behavior
         if (iiis.IsPlayerInSight(gameObject, layerMask)) {
@@ -69,7 +70,7 @@ public class EnemyBehavior : MonoBehaviour {
             else {
                 lookingForPlayer = true;               
                 aggroTimer = aggroTime;
-				isChasing = false;
+				
             }
         }
         else if (lookingForPlayer == true && aggroTimer > 0) {
@@ -89,6 +90,7 @@ public class EnemyBehavior : MonoBehaviour {
             lookingForPlayer = false;
             playerLastPosReached = false;
             navAgent.SetDestination(points[destPoint].position);
+            isChasing = false;
         }
 
         //Patrol behavior
