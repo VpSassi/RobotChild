@@ -52,7 +52,6 @@ public class EnemyBehavior : MonoBehaviour {
         //audiosource.position = transform.position;      //kuljettaa fabricin audiosourcea
         lookTimer += Time.deltaTime;
         aggroTimer -= Time.deltaTime;
-        print(isChasing);
 
         //Detection behavior
         if (iiis.IsPlayerInSight(gameObject, layerMask)) {
