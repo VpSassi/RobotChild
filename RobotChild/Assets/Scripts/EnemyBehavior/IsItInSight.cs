@@ -7,6 +7,7 @@ public class IsItInSight : MonoBehaviour {
 	public float maxDistance;
 
     GameObject player;
+
     PlayerAbilities pa;
 
 
