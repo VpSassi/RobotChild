@@ -4,7 +4,20 @@ using System.Collections.Generic;
 
 public class AcquireTarget : MonoBehaviour {
 
-    public List<GameObject> robotChildren;
+    public GameObject[] robotChildren;
+
+
+
+
+
+    void Start() {
+        robotChildren = GameObject.FindGameObjectsWithTag("RobotChild");
+        print(robotChildren);
+    }
+
+
+
+
 
 	//public GameObject ClosestTarget() {
 
