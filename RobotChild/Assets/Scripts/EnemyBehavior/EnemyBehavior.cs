@@ -58,6 +58,9 @@ public class EnemyBehavior : MonoBehaviour {
             rend.material.color = Color.red;
             playerLastPos = player.transform.position;
             navAgent.SetDestination(player.transform.position);
+            if ((player.transform.position - transform.position).magnitude < closeEnough) {
+                rend.material.color = Color.black;
+            }
             if (lookingForPlayer) {               
                 aggroTimer = aggroTime;
             }
