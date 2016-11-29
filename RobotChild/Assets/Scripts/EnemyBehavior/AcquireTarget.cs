@@ -15,7 +15,7 @@ public class AcquireTarget : MonoBehaviour {
 
 
     void Start() {
-        robotClones = GameObject.FindGameObjectsWithTag("robotChild");
+        robotClones = GameObject.FindGameObjectsWithTag("RobotClone");
         robotChildren = new GameObject[robotClones.Length + 1];
         distancesToChildren = new float[robotChildren.Length];
 
