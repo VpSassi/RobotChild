@@ -17,11 +17,12 @@ public class AcquireTarget : MonoBehaviour {
     void Start() {
         robotClones = GameObject.FindGameObjectsWithTag("robotChild");
         robotChildren = new GameObject[robotClones.Length + 1];
+        distancesToChildren = new float[robotChildren.Length];
+
         robotChildren[0] = GameObject.FindWithTag("Player");
         for (int i = 1; i <= robotClones.Length; i++) {
             robotChildren[i] = robotClones[i - 1];
         }
-        distancesToChildren = new float[robotChildren.Length];
     }
 
     void Update() {
