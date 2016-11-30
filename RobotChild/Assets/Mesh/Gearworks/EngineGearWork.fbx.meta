@@ -1,0 +1,223 @@
+fileFormatVersion: 2
+guid: fa1a60862e87e41708e0875f834ff6d9
+timeCreated: 1480489243
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Drive_Shaft1
+    100002: Drive_Shaft1 1
+    100004: Drive_Shaft1 2
+    100006: Drive_Shaft1 3
+    100008: Drive_Shaft_InnerTop
+    100010: Drive_Shaft_outerRight
+    100012: Engine_Gear_Inner_Left
+    100014: Engine_Gear_Inner_Left1
+    100016: Engine_Gear_Inner_Right
+    100018: Engine_Gear_Inner_Right1
+    100020: Engine_Gear_Inner_Top
+    100022: Engine_Gear_Inner_Top1
+    100024: Engine_Gear_Outer_Bottom
+    100026: Engine_Gear_Outer_Bottom1
+    100028: Engine_Gear_Outer_Left
+    100030: Engine_Gear_Outer_Left1
+    100032: Engine_Gear_Outer_Right
+    100034: Engine_Gear_Outer_Right1
+    100036: Engine_MainGear_128teeth
+    100038: Engine_MainGear_64teeth
+    100040: Engine_propulsion_Fast
+    100042: Engine_propulsion_Slow
+    100044: //RootNode
+    100046: gear_support
+    100048: gear_support1
+    100050: Stopper_bottom
+    100052: Stopper_bottomLeft
+    100054: Stopper_bottomRight
+    100056: Stopper_top
+    100058: Stopper_topLeft
+    100060: Stopper_topRight
+    400000: Drive_Shaft1
+    400002: Drive_Shaft1 1
+    400004: Drive_Shaft1 2
+    400006: Drive_Shaft1 3
+    400008: Drive_Shaft_InnerTop
+    400010: Drive_Shaft_outerRight
+    400012: Engine_Gear_Inner_Left
+    400014: Engine_Gear_Inner_Left1
+    400016: Engine_Gear_Inner_Right
+    400018: Engine_Gear_Inner_Right1
+    400020: Engine_Gear_Inner_Top
+    400022: Engine_Gear_Inner_Top1
+    400024: Engine_Gear_Outer_Bottom
+    400026: Engine_Gear_Outer_Bottom1
+    400028: Engine_Gear_Outer_Left
+    400030: Engine_Gear_Outer_Left1
+    400032: Engine_Gear_Outer_Right
+    400034: Engine_Gear_Outer_Right1
+    400036: Engine_MainGear_128teeth
+    400038: Engine_MainGear_64teeth
+    400040: Engine_propulsion_Fast
+    400042: Engine_propulsion_Slow
+    400044: //RootNode
+    400046: gear_support
+    400048: gear_support1
+    400050: Stopper_bottom
+    400052: Stopper_bottomLeft
+    400054: Stopper_bottomRight
+    400056: Stopper_top
+    400058: Stopper_topLeft
+    400060: Stopper_topRight
+    2300000: Drive_Shaft1
+    2300002: Drive_Shaft1 1
+    2300004: Drive_Shaft1 2
+    2300006: Drive_Shaft1 3
+    2300008: Drive_Shaft_InnerTop
+    2300010: Drive_Shaft_outerRight
+    2300012: Engine_Gear_Inner_Left
+    2300014: Engine_Gear_Inner_Left1
+    2300016: Engine_Gear_Inner_Right
+    2300018: Engine_Gear_Inner_Right1
+    2300020: Engine_Gear_Inner_Top
+    2300022: Engine_Gear_Inner_Top1
+    2300024: Engine_Gear_Outer_Bottom
+    2300026: Engine_Gear_Outer_Bottom1
+    2300028: Engine_Gear_Outer_Left
+    2300030: Engine_Gear_Outer_Left1
+    2300032: Engine_Gear_Outer_Right
+    2300034: Engine_Gear_Outer_Right1
+    2300036: Engine_MainGear_128teeth
+    2300038: Engine_MainGear_64teeth
+    2300040: Engine_propulsion_Fast
+    2300042: Engine_propulsion_Slow
+    2300044: gear_support
+    2300046: gear_support1
+    2300048: Stopper_bottom
+    2300050: Stopper_bottomLeft
+    2300052: Stopper_bottomRight
+    2300054: Stopper_top
+    2300056: Stopper_topLeft
+    2300058: Stopper_topRight
+    3300000: Drive_Shaft1
+    3300002: Drive_Shaft1 1
+    3300004: Drive_Shaft1 2
+    3300006: Drive_Shaft1 3
+    3300008: Drive_Shaft_InnerTop
+    3300010: Drive_Shaft_outerRight
+    3300012: Engine_Gear_Inner_Left
+    3300014: Engine_Gear_Inner_Left1
+    3300016: Engine_Gear_Inner_Right
+    3300018: Engine_Gear_Inner_Right1
+    3300020: Engine_Gear_Inner_Top
+    3300022: Engine_Gear_Inner_Top1
+    3300024: Engine_Gear_Outer_Bottom
+    3300026: Engine_Gear_Outer_Bottom1
+    3300028: Engine_Gear_Outer_Left
+    3300030: Engine_Gear_Outer_Left1
+    3300032: Engine_Gear_Outer_Right
+    3300034: Engine_Gear_Outer_Right1
+    3300036: Engine_MainGear_128teeth
+    3300038: Engine_MainGear_64teeth
+    3300040: Engine_propulsion_Fast
+    3300042: Engine_propulsion_Slow
+    3300044: gear_support
+    3300046: gear_support1
+    3300048: Stopper_bottom
+    3300050: Stopper_bottomLeft
+    3300052: Stopper_bottomRight
+    3300054: Stopper_top
+    3300056: Stopper_topLeft
+    3300058: Stopper_topRight
+    4300000: Engine_Gear_Inner_Right
+    4300002: Stopper_bottomRight
+    4300004: Drive_Shaft1
+    4300006: Engine_Gear_Inner_Right1
+    4300008: Engine_Gear_Outer_Bottom
+    4300010: Stopper_bottom
+    4300012: Drive_Shaft1
+    4300014: Engine_Gear_Outer_Bottom1
+    4300016: Engine_Gear_Inner_Left
+    4300018: Stopper_bottomLeft
+    4300020: Drive_Shaft1
+    4300022: Engine_Gear_Inner_Left1
+    4300024: Engine_Gear_Outer_Left
+    4300026: Stopper_topLeft
+    4300028: Drive_Shaft1
+    4300030: Engine_Gear_Outer_Left1
+    4300032: Engine_Gear_Inner_Top
+    4300034: Stopper_top
+    4300036: Drive_Shaft_InnerTop
+    4300038: Engine_Gear_Inner_Top1
+    4300040: Engine_Gear_Outer_Right
+    4300042: Stopper_topRight
+    4300044: Drive_Shaft_outerRight
+    4300046: Engine_Gear_Outer_Right1
+    4300048: gear_support
+    4300050: Engine_MainGear_64teeth
+    4300052: Engine_MainGear_128teeth
+    4300054: gear_support1
+    4300056: Engine_propulsion_Slow
+    4300058: Engine_propulsion_Fast
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
