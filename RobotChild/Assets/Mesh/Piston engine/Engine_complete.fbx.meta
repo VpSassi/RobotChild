@@ -1,0 +1,132 @@
+fileFormatVersion: 2
+guid: 3163ed9cba2624f7f82e525f2b2f4cdd
+timeCreated: 1480488414
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: AkselirunkoKaari
+    100002: Bolt
+    100004: //RootNode
+    100006: Engine_Flywheel
+    100008: Engine_Piston
+    100010: Engine_Piston 1
+    100012: Engine_Piston_Crank
+    100014: Engine_PistonFrame
+    100016: Engine_Support
+    100018: EngineSupport_1
+    100020: EngineSupport_2
+    100022: EngineSupportBottom
+    100024: MainShaft
+    100026: Shaft_Support
+    400000: AkselirunkoKaari
+    400002: Bolt
+    400004: //RootNode
+    400006: Engine_Flywheel
+    400008: Engine_Piston
+    400010: Engine_Piston 1
+    400012: Engine_Piston_Crank
+    400014: Engine_PistonFrame
+    400016: Engine_Support
+    400018: EngineSupport_1
+    400020: EngineSupport_2
+    400022: EngineSupportBottom
+    400024: MainShaft
+    400026: Shaft_Support
+    2300000: AkselirunkoKaari
+    2300002: Bolt
+    2300004: Engine_Flywheel
+    2300006: Engine_Piston 1
+    2300008: Engine_Piston_Crank
+    2300010: Engine_PistonFrame
+    2300012: EngineSupport_1
+    2300014: EngineSupport_2
+    2300016: EngineSupportBottom
+    2300018: MainShaft
+    2300020: Shaft_Support
+    3300000: AkselirunkoKaari
+    3300002: Bolt
+    3300004: Engine_Flywheel
+    3300006: Engine_Piston 1
+    3300008: Engine_Piston_Crank
+    3300010: Engine_PistonFrame
+    3300012: EngineSupport_1
+    3300014: EngineSupport_2
+    3300016: EngineSupportBottom
+    3300018: MainShaft
+    3300020: Shaft_Support
+    4300000: Bolt
+    4300002: EngineSupportBottom
+    4300004: EngineSupport_1
+    4300006: EngineSupport_2
+    4300008: AkselirunkoKaari
+    4300010: Shaft_Support
+    4300012: Engine_Piston
+    4300014: MainShaft
+    4300016: Engine_Piston_Crank
+    4300018: Engine_PistonFrame
+    4300020: Engine_Flywheel
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
