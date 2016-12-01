@@ -30,7 +30,7 @@ public class FollowOnInteract : MonoBehaviour {
                 navAgent.Stop();
             }
         }
-        print(readyToFollow);
+        //print(readyToFollow);
     }
 
     //"readyToFollow" is used in PlayerAbilities script to get the clones to follow the player

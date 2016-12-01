@@ -3,11 +3,13 @@ using System.Collections;
 
 public class EnemyBehavior : MonoBehaviour {
 
-    public Transform audiosource;
     public float closeEnough = 1f;
     public float aggroTime;
+    public bool isChasing;
     public Transform[] points;
+    public Transform audiosource;
     public LayerMask layerMask;
+    public Animator cannibalAnim;
 
     private int destPoint = 0;
     float remainingDistance;
@@ -28,10 +30,6 @@ public class EnemyBehavior : MonoBehaviour {
     PlayerAbilities pa;
     IsItInSight iiis;
     AcquireTarget at;
-
-	public Animator cannibalAnim;
-
-	public bool isChasing;
 
 
     // TODO: also support turning around at last WP?
@@ -59,7 +57,7 @@ public class EnemyBehavior : MonoBehaviour {
         lookTimer += Time.deltaTime;
         aggroTimer -= Time.deltaTime;
 
-        //Detection behavior
+        //Behavior for if player is currently in sight
         if (iiis.IsPlayerInSight(gameObject, layerMask)) {
 			//rend.material.color = Color.red;
 			cannibalAnim.SetBool("chasing", true);
@@ -79,6 +77,7 @@ public class EnemyBehavior : MonoBehaviour {
                 aggroTimer = aggroTime;				
             }
         }
+        //Behavior for if player is no longer in sight but aggro timer is still on
         else if (lookingForPlayer == true && aggroTimer > 0) {
 
 			if (playerLastPosReached == false) {
@@ -94,6 +93,7 @@ public class EnemyBehavior : MonoBehaviour {
                 LookAround();
             }
         }
+        //Behavior for if player is no longer in sight and agrro timer is off
         else if (aggroTimer < 0) {
 			//rend.material.color = Color.blue;
 			cannibalAnim.SetBool("playerPlaysDead", false);
