@@ -63,7 +63,8 @@ public class EnemyBehavior : MonoBehaviour {
 			cannibalAnim.SetBool("chasing", true);
             robotChildLastPos = robotChild.transform.position;
             navAgent.SetDestination(robotChild.transform.position);
-			isChasing = true;
+            playerLastPosReached = false;
+            isChasing = true;
             if ((robotChild.transform.position - transform.position).magnitude < closeEnough) {
 				cannibalAnim.SetBool("Kill",true);
                 //rend.material.color = Color.black;
@@ -79,7 +80,6 @@ public class EnemyBehavior : MonoBehaviour {
         }
         //Behavior for if player is no longer in sight but aggro timer is still on
         else if (lookingForPlayer == true && aggroTimer > 0) {
-
 			if (playerLastPosReached == false) {
                 navAgent.SetDestination(robotChildLastPos);
                 if ((robotChildLastPos - transform.position).magnitude < closeEnough) {
