@@ -139,8 +139,9 @@ public class PlayerAbilities : MonoBehaviour {
 			}
 		}
 
-        if (Input.GetKeyDown(KeyCode.V) && cM.moving == false && !nrg.getIsDead()) {
+        if (Input.GetButtonDown("Dance") && cM.moving == false && !nrg.getIsDead()) {
 			dance = !dance;
+			print(dance);
 		}
 
 		if (dance == true) {

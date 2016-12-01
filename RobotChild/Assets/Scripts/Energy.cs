@@ -17,6 +17,8 @@ public class Energy : MonoBehaviour {
 
 	bool isDead;
 
+	public bool isSprinting;
+
 	public TextMesh energy;
 	public ParticleSystem pCoreParticle;
 
@@ -114,16 +116,19 @@ public class Energy : MonoBehaviour {
 			charMov.moveSpeed = sprintSpeed;
 			pAnim.SetBool("sprint", true);
 			eTotTime = 1;
+			isSprinting = true;
 		}
 		else if (energyMax > 20 || charMov.moving == false){
 			charMov.moveSpeed = standardSpeed;
 			pAnim.SetBool("sprint", false);
 			eTotTime = 2;
+			isSprinting = false;
 		}
 		else if( energyMax < 20) {
 			charMov.moveSpeed = lowPowerSpeed;
 			pAnim.SetBool("sprint", false);
 			eTotTime = 2;
+			isSprinting = false;
 		}
 		 
 	}
