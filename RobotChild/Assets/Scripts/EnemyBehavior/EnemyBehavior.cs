@@ -29,6 +29,7 @@ public class EnemyBehavior : MonoBehaviour {
     IsItInSight iiis;
     AcquireTarget at;
 
+	public Animator cannibalAnim;
 
 	public bool isChasing;
 
@@ -60,12 +61,14 @@ public class EnemyBehavior : MonoBehaviour {
 
         //Detection behavior
         if (iiis.IsPlayerInSight(gameObject, layerMask)) {
-            rend.material.color = Color.red;
+			//rend.material.color = Color.red;
+			cannibalAnim.SetBool("chasing", true);
             robotChildLastPos = robotChild.transform.position;
             navAgent.SetDestination(robotChild.transform.position);
 			isChasing = true;
             if ((robotChild.transform.position - transform.position).magnitude < closeEnough) {
-                rend.material.color = Color.black;
+				cannibalAnim.SetBool("Kill",true);
+                //rend.material.color = Color.black;
                 //Fabric.EventManager.Instance.PostEvent("AttackMusic");
             }
             if (lookingForPlayer) {               
@@ -73,25 +76,28 @@ public class EnemyBehavior : MonoBehaviour {
             }
             else {
                 lookingForPlayer = true;               
-                aggroTimer = aggroTime;
-				
+                aggroTimer = aggroTime;				
             }
         }
         else if (lookingForPlayer == true && aggroTimer > 0) {
-            if (playerLastPosReached == false) {
+
+			if (playerLastPosReached == false) {
                 navAgent.SetDestination(robotChildLastPos);
                 if ((robotChildLastPos - transform.position).magnitude < closeEnough) {
                     playerLastPosReached = true;
                 }
             }
             if (playerLastPosReached == true) {
-                rend.material.color = Color.yellow;
+				//rend.material.color = Color.yellow;
+				cannibalAnim.SetBool("chasing", false);
+			    cannibalAnim.SetBool("playerPlaysDead", true);
                 LookAround();
             }
         }
         else if (aggroTimer < 0) {
-            rend.material.color = Color.blue;
-            lookingForPlayer = false;
+			//rend.material.color = Color.blue;
+			cannibalAnim.SetBool("playerPlaysDead", false);
+			lookingForPlayer = false;
             playerLastPosReached = false;
             navAgent.SetDestination(points[destPoint].position);
             isChasing = false;
