@@ -5,6 +5,7 @@ public class EnemyBehavior : MonoBehaviour {
 
     public float closeEnough = 1f;
     public float aggroTime;
+    public float attackDelay;
     public float chasingSpeed;
     public float patrolSpeed;
     public bool isChasing;
@@ -17,9 +18,11 @@ public class EnemyBehavior : MonoBehaviour {
     float remainingDistance;
     float lookTimer;
     float aggroTimer;
+    float attackTimer;
     float lookAngle;
     bool lookingForPlayer;
     bool playerLastPosReached;
+    bool isAttackTimerOn;
     GameObject player;
     GameObject robotChild;
     NavMeshAgent navAgent;
@@ -58,6 +61,7 @@ public class EnemyBehavior : MonoBehaviour {
         //audiosource.position = transform.position;      //kuljettaa fabricin audiosourcea
         lookTimer += Time.deltaTime;
         aggroTimer -= Time.deltaTime;
+        attackTimer -= Time.deltaTime;
 
         //Behavior for if player is currently in sight
         if (iiis.IsPlayerInSight(gameObject, layerMask)) {
@@ -67,9 +71,15 @@ public class EnemyBehavior : MonoBehaviour {
             robotChildLastPos = robotChild.transform.position;
             navAgent.SetDestination(robotChild.transform.position);
             navAgent.speed = chasingSpeed;
-            if ((robotChild.transform.position - transform.position).magnitude < closeEnough) {
-				cannibalAnim.SetBool("Kill",true);
-                //Fabric.EventManager.Instance.PostEvent("AttackMusic");
+            if ((robotChild.transform.position - transform.position).magnitude < closeEnough) {     //Attack behavior here
+                if (isAttackTimerOn == false) {
+                    attackTimer = attackDelay;
+                    isAttackTimerOn = true;
+                }                   
+                if (attackTimer < 0) {
+                    cannibalAnim.SetBool("Kill", true);
+                    //Fabric.EventManager.Instance.PostEvent("AttackMusic");
+                }
             }
             if (lookingForPlayer) {               
                 aggroTimer = aggroTime;
