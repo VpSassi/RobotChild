@@ -54,7 +54,6 @@ public class EnemyBehavior : MonoBehaviour {
 
 	void Update() {
         robotChild = at.ClosestChild();
-        print(navAgent.speed);
 
         //audiosource.position = transform.position;      //kuljettaa fabricin audiosourcea
         lookTimer += Time.deltaTime;
@@ -62,16 +61,14 @@ public class EnemyBehavior : MonoBehaviour {
 
         //Behavior for if player is currently in sight
         if (iiis.IsPlayerInSight(gameObject, layerMask)) {
-			//rend.material.color = Color.red;
-			cannibalAnim.SetBool("chasing", true);
+			cannibalAnim.SetBool("chasing", true);           
+            playerLastPosReached = false;
+            isChasing = true;
             robotChildLastPos = robotChild.transform.position;
             navAgent.SetDestination(robotChild.transform.position);
             navAgent.speed = chasingSpeed;
-            playerLastPosReached = false;
-            isChasing = true;
             if ((robotChild.transform.position - transform.position).magnitude < closeEnough) {
 				cannibalAnim.SetBool("Kill",true);
-                //rend.material.color = Color.black;
                 //Fabric.EventManager.Instance.PostEvent("AttackMusic");
             }
             if (lookingForPlayer) {               
@@ -91,7 +88,6 @@ public class EnemyBehavior : MonoBehaviour {
                 }
             }
             if (playerLastPosReached == true) {
-				//rend.material.color = Color.yellow;
 				cannibalAnim.SetBool("chasing", false);
 			    cannibalAnim.SetBool("playerPlaysDead", true);
                 LookAround();
@@ -99,13 +95,12 @@ public class EnemyBehavior : MonoBehaviour {
         }
         //Behavior for if player is no longer in sight and agrro timer is off
         else if (aggroTimer < 0) {
-			//rend.material.color = Color.blue;
 			cannibalAnim.SetBool("playerPlaysDead", false);
 			lookingForPlayer = false;
-            playerLastPosReached = false;
+            playerLastPosReached = false;           
+            isChasing = false;
             navAgent.SetDestination(points[destPoint].position);
             navAgent.speed = patrolSpeed;
-            isChasing = false;
         }
 
         //Patrol behavior
