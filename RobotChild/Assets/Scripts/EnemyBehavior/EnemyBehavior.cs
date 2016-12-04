@@ -5,6 +5,8 @@ public class EnemyBehavior : MonoBehaviour {
 
     public float closeEnough = 1f;
     public float aggroTime;
+    public float chasingSpeed;
+    public float patrolSpeed;
     public bool isChasing;
     public Transform[] points;
     public Transform audiosource;
@@ -52,6 +54,7 @@ public class EnemyBehavior : MonoBehaviour {
 
 	void Update() {
         robotChild = at.ClosestChild();
+        print(navAgent.speed);
 
         //audiosource.position = transform.position;      //kuljettaa fabricin audiosourcea
         lookTimer += Time.deltaTime;
@@ -63,6 +66,7 @@ public class EnemyBehavior : MonoBehaviour {
 			cannibalAnim.SetBool("chasing", true);
             robotChildLastPos = robotChild.transform.position;
             navAgent.SetDestination(robotChild.transform.position);
+            navAgent.speed = chasingSpeed;
             playerLastPosReached = false;
             isChasing = true;
             if ((robotChild.transform.position - transform.position).magnitude < closeEnough) {
@@ -100,6 +104,7 @@ public class EnemyBehavior : MonoBehaviour {
 			lookingForPlayer = false;
             playerLastPosReached = false;
             navAgent.SetDestination(points[destPoint].position);
+            navAgent.speed = patrolSpeed;
             isChasing = false;
         }
 
@@ -120,6 +125,7 @@ public class EnemyBehavior : MonoBehaviour {
 
         destPoint = (destPoint + 1) % points.Length;
         navAgent.SetDestination(points[destPoint].position);
+        navAgent.speed = patrolSpeed;
     }
 
     void LookAround() {
