@@ -50,7 +50,6 @@ public class PlayerAbilities : MonoBehaviour {
 	void Start() {
 		nrg = GetComponent<Energy>();
 		cM = GetComponent<CharacterMovement>();
-		
 	}
 	
 	void Update () {
@@ -66,10 +65,11 @@ public class PlayerAbilities : MonoBehaviour {
 
 		lightValue += Input.GetAxis("Mouse ScrollWheel") * lightAdd;
 		lightValue = Mathf.Clamp(lightValue, lightMin, lightMax);
-		fadeImage.color = new Color(0, 0, 0, lightMax - lightValue);
+
+        fadeImage.color = new Color(0, 0, 0, lightMax - lightValue);
 
 
-		if (playDead) {
+        if (playDead) {
             lightValue = 0;
         }
  
