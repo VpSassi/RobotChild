@@ -5,6 +5,9 @@ public class EnemyBehavior : MonoBehaviour {
 
     public float closeEnough = 1f;
     public float aggroTime;
+    public float attackDelay;
+    public float chasingSpeed;
+    public float patrolSpeed;
     public bool isChasing;
     public Transform[] points;
     public Transform audiosource;
@@ -15,9 +18,11 @@ public class EnemyBehavior : MonoBehaviour {
     float remainingDistance;
     float lookTimer;
     float aggroTimer;
+    float attackTimer;
     float lookAngle;
     bool lookingForPlayer;
     bool playerLastPosReached;
+    bool isAttackTimerOn;
     GameObject player;
     GameObject robotChild;
     NavMeshAgent navAgent;
@@ -56,19 +61,25 @@ public class EnemyBehavior : MonoBehaviour {
         //audiosource.position = transform.position;      //kuljettaa fabricin audiosourcea
         lookTimer += Time.deltaTime;
         aggroTimer -= Time.deltaTime;
+        attackTimer -= Time.deltaTime;
 
         //Behavior for if player is currently in sight
         if (iiis.IsPlayerInSight(gameObject, layerMask)) {
-			//rend.material.color = Color.red;
-			cannibalAnim.SetBool("chasing", true);
-            robotChildLastPos = robotChild.transform.position;
-            navAgent.SetDestination(robotChild.transform.position);
+			cannibalAnim.SetBool("chasing", true);           
             playerLastPosReached = false;
             isChasing = true;
-            if ((robotChild.transform.position - transform.position).magnitude < closeEnough) {
-				cannibalAnim.SetBool("Kill",true);
-                //rend.material.color = Color.black;
-                //Fabric.EventManager.Instance.PostEvent("AttackMusic");
+            robotChildLastPos = robotChild.transform.position;
+            navAgent.SetDestination(robotChild.transform.position);
+            navAgent.speed = chasingSpeed;
+            if ((robotChild.transform.position - transform.position).magnitude < closeEnough) {     //Attack behavior here
+                if (isAttackTimerOn == false) {
+                    attackTimer = attackDelay;
+                    isAttackTimerOn = true;
+                }                   
+                if (attackTimer < 0) {
+                    cannibalAnim.SetBool("Kill", true);
+                    //Fabric.EventManager.Instance.PostEvent("AttackMusic");
+                }
             }
             if (lookingForPlayer) {               
                 aggroTimer = aggroTime;
@@ -87,7 +98,6 @@ public class EnemyBehavior : MonoBehaviour {
                 }
             }
             if (playerLastPosReached == true) {
-				//rend.material.color = Color.yellow;
 				cannibalAnim.SetBool("chasing", false);
 			    cannibalAnim.SetBool("playerPlaysDead", true);
                 LookAround();
@@ -95,12 +105,12 @@ public class EnemyBehavior : MonoBehaviour {
         }
         //Behavior for if player is no longer in sight and agrro timer is off
         else if (aggroTimer < 0) {
-			//rend.material.color = Color.blue;
 			cannibalAnim.SetBool("playerPlaysDead", false);
 			lookingForPlayer = false;
-            playerLastPosReached = false;
-            navAgent.SetDestination(points[destPoint].position);
+            playerLastPosReached = false;           
             isChasing = false;
+            navAgent.SetDestination(points[destPoint].position);
+            navAgent.speed = patrolSpeed;
         }
 
         //Patrol behavior
@@ -120,6 +130,7 @@ public class EnemyBehavior : MonoBehaviour {
 
         destPoint = (destPoint + 1) % points.Length;
         navAgent.SetDestination(points[destPoint].position);
+        navAgent.speed = patrolSpeed;
     }
 
     void LookAround() {
