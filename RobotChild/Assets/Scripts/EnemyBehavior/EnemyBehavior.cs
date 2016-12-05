@@ -3,32 +3,38 @@ using System.Collections;
 
 public class EnemyBehavior : MonoBehaviour {
 
-    public Transform audiosource;
     public float closeEnough = 1f;
     public float aggroTime;
+    public float attackDelay;
+    public float chasingSpeed;
+    public float patrolSpeed;
+    public bool isChasing;
     public Transform[] points;
+    public Transform audiosource;
     public LayerMask layerMask;
+    public Animator cannibalAnim;
 
     private int destPoint = 0;
     float remainingDistance;
     float lookTimer;
     float aggroTimer;
+    float attackTimer;
     float lookAngle;
     bool lookingForPlayer;
     bool playerLastPosReached;
+    bool isAttackTimerOn;
     GameObject player;
+    GameObject robotChild;
     NavMeshAgent navAgent;
     Renderer rend;
     Vector3 direction;
-    Vector3 playerLastPos;
+    Vector3 robotChildLastPos;
     Quaternion lookRotation;
 
     Search search;
     PlayerAbilities pa;
     IsItInSight iiis;
-
-
-	public bool isChasing;
+    AcquireTarget at;
 
 
     // TODO: also support turning around at last WP?
@@ -44,52 +50,67 @@ public class EnemyBehavior : MonoBehaviour {
         search = GetComponent<Search>();
         pa = player.GetComponent<PlayerAbilities>();
         iiis = GetComponent<IsItInSight>();
+        at = GetComponent<AcquireTarget>();
         rend = GetComponent<Renderer>();
         layerMask = ~layerMask;         //We want our raycasts to ignore the selected layers  
     }
 
 	void Update() {
+        robotChild = at.ClosestChild();
+
         //audiosource.position = transform.position;      //kuljettaa fabricin audiosourcea
         lookTimer += Time.deltaTime;
         aggroTimer -= Time.deltaTime;
+        attackTimer -= Time.deltaTime;
 
-        //Detection behavior
+        //Behavior for if player is currently in sight
         if (iiis.IsPlayerInSight(gameObject, layerMask)) {
-            rend.material.color = Color.red;
-            playerLastPos = player.transform.position;
-            navAgent.SetDestination(player.transform.position);
-			isChasing = true;
-            if ((player.transform.position - transform.position).magnitude < closeEnough) {
-                rend.material.color = Color.black;
-                //Fabric.EventManager.Instance.PostEvent("AttackMusic");
+			cannibalAnim.SetBool("chasing", true);           
+            playerLastPosReached = false;
+            isChasing = true;
+            robotChildLastPos = robotChild.transform.position;
+            navAgent.SetDestination(robotChild.transform.position);
+            navAgent.speed = chasingSpeed;
+            if ((robotChild.transform.position - transform.position).magnitude < closeEnough) {     //Attack behavior here
+                if (isAttackTimerOn == false) {
+                    attackTimer = attackDelay;
+                    isAttackTimerOn = true;
+                }                   
+                if (attackTimer < 0) {
+                    cannibalAnim.SetBool("Kill", true);
+                    //Fabric.EventManager.Instance.PostEvent("AttackMusic");
+                }
             }
             if (lookingForPlayer) {               
                 aggroTimer = aggroTime;
             }
             else {
                 lookingForPlayer = true;               
-                aggroTimer = aggroTime;
-				
+                aggroTimer = aggroTime;				
             }
         }
+        //Behavior for if player is no longer in sight but aggro timer is still on
         else if (lookingForPlayer == true && aggroTimer > 0) {
-            if (playerLastPosReached == false) {
-                navAgent.SetDestination(playerLastPos);
-                if ((playerLastPos - transform.position).magnitude < closeEnough) {
+			if (playerLastPosReached == false) {
+                navAgent.SetDestination(robotChildLastPos);
+                if ((robotChildLastPos - transform.position).magnitude < closeEnough) {
                     playerLastPosReached = true;
                 }
             }
             if (playerLastPosReached == true) {
-                rend.material.color = Color.yellow;
+				cannibalAnim.SetBool("chasing", false);
+			    cannibalAnim.SetBool("playerPlaysDead", true);
                 LookAround();
             }
         }
+        //Behavior for if player is no longer in sight and agrro timer is off
         else if (aggroTimer < 0) {
-            rend.material.color = Color.blue;
-            lookingForPlayer = false;
-            playerLastPosReached = false;
-            navAgent.SetDestination(points[destPoint].position);
+			cannibalAnim.SetBool("playerPlaysDead", false);
+			lookingForPlayer = false;
+            playerLastPosReached = false;           
             isChasing = false;
+            navAgent.SetDestination(points[destPoint].position);
+            navAgent.speed = patrolSpeed;
         }
 
         //Patrol behavior
@@ -109,6 +130,7 @@ public class EnemyBehavior : MonoBehaviour {
 
         destPoint = (destPoint + 1) % points.Length;
         navAgent.SetDestination(points[destPoint].position);
+        navAgent.speed = patrolSpeed;
     }
 
     void LookAround() {

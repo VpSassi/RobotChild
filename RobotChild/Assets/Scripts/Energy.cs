@@ -17,6 +17,8 @@ public class Energy : MonoBehaviour {
 
 	bool isDead;
 
+	public bool isSprinting;
+
 	public TextMesh energy;
 	public ParticleSystem pCoreParticle;
 
@@ -104,26 +106,29 @@ public class Energy : MonoBehaviour {
 			Instantiate(pCoreParticle, pC.transform.position, Quaternion.identity);
             Fabric.EventManager.Instance.PostEvent("PowerUp");
 			pAnim.SetBool("pickUp", true);
-			energyAnimBool = true;
+			energyAnimBool = true; 
 		}else {
 			pAnim.SetBool("pickUp", false);
 		}
 
-		if (Input.GetAxis("sprint") > 0 && energyMax > 20 && !getIsDead() && charMov.moving == true) {
+
+		if (Input.GetAxis("sprint") > 0 && energyMax > 20 && !getIsDead() && charMov.moving == true || Input.GetKey(KeyCode.LeftShift) && energyMax > 20 && !getIsDead() && charMov.moving == true) {
 			charMov.moveSpeed = sprintSpeed;
 			pAnim.SetBool("sprint", true);
 			eTotTime = 1;
-
+			isSprinting = true;
 		}
 		else if (energyMax > 20 || charMov.moving == false){
 			charMov.moveSpeed = standardSpeed;
 			pAnim.SetBool("sprint", false);
 			eTotTime = 2;
+			isSprinting = false;
 		}
 		else if( energyMax < 20) {
 			charMov.moveSpeed = lowPowerSpeed;
 			pAnim.SetBool("sprint", false);
 			eTotTime = 2;
+			isSprinting = false;
 		}
 		 
 	}

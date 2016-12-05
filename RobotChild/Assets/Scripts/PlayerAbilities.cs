@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 public class PlayerAbilities : MonoBehaviour {
 
 	public bool playDead;
@@ -17,6 +17,7 @@ public class PlayerAbilities : MonoBehaviour {
 
 	float pDedTimer;
 	public float pDedTimerMax;
+	public float maxDetectionDistance;
 
 	public int keyCount;
 
@@ -36,6 +37,8 @@ public class PlayerAbilities : MonoBehaviour {
 
 	public Animator pAnim;
 
+	public Image fadeImage;
+
 	public void setKey(Key bling) {
 		key = bling;
 	}
@@ -52,16 +55,25 @@ public class PlayerAbilities : MonoBehaviour {
 	
 	void Update () {
 
-		lightValue += Input.GetAxis("Mouse ScrollWheel") * lightAdd;
+		if (Input.GetButton("addLight")) {
+			lightValue += lightAdd * Time.deltaTime;
+		}
+		if (Input.GetButton("takeLight")) {
+			lightValue -= lightAdd * Time.deltaTime;
+		}
 
-        if (playDead) {
+		//print(lightValue);
+
+		lightValue += Input.GetAxis("Mouse ScrollWheel") * lightAdd;
+		lightValue = Mathf.Clamp(lightValue, lightMin, lightMax);
+		fadeImage.color = new Color(0, 0, 0, lightMax - lightValue);
+
+
+		if (playDead) {
             lightValue = 0;
         }
-        else {
-            lightValue = Mathf.Clamp(lightValue, lightMin, lightMax);
-        }
-
-		debugSphere.localScale = new Vector3(lightValue * 2, lightValue * 2, lightValue * 2);
+ 
+		debugSphere.localScale = new Vector3(lightValue * maxDetectionDistance, lightValue * maxDetectionDistance, lightValue * maxDetectionDistance);
 		Debug.DrawRay(transform.position, (enemy.transform.position - transform.position).normalized * lightValue);
 
 		if (Vector3.Distance(transform.position, enemy.transform.position) < lightValue) {
@@ -127,8 +139,9 @@ public class PlayerAbilities : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKeyDown(KeyCode.V) && cM.moving == false && !nrg.getIsDead()) {
+        if (Input.GetButtonDown("Dance") && cM.moving == false && !nrg.getIsDead()) {
 			dance = !dance;
+			print(dance);
 		}
 
 		if (dance == true) {
