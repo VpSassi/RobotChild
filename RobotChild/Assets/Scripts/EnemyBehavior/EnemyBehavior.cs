@@ -10,7 +10,7 @@ public class EnemyBehavior : MonoBehaviour {
     public float patrolSpeed;
     public bool isChasing;
     public Transform[] points;
-    public Transform audiosource;
+    public Transform[] audiosource;
     public LayerMask layerMask;
     public Animator cannibalAnim;
 
@@ -58,7 +58,11 @@ public class EnemyBehavior : MonoBehaviour {
 	void Update() {
         robotChild = at.ClosestChild();
 
-        //audiosource.position = transform.position;      //kuljettaa fabricin audiosourcea
+        foreach (Transform t in audiosource)
+        {
+            t.position = transform.position;      //kuljettaa fabricin audiosourcea
+        }
+
         lookTimer += Time.deltaTime;
         aggroTimer -= Time.deltaTime;
         attackTimer -= Time.deltaTime;
