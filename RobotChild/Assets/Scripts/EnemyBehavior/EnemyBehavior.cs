@@ -14,6 +14,9 @@ public class EnemyBehavior : MonoBehaviour {
     public LayerMask layerMask;
     public Animator cannibalAnim;
 
+	public Color baseColor, chaseColor, alertColor;
+	SkinnedMeshRenderer[] renderers;
+
     private int destPoint = 0;
     float remainingDistance;
     float lookTimer;
@@ -53,6 +56,7 @@ public class EnemyBehavior : MonoBehaviour {
         at = GetComponent<AcquireTarget>();
         rend = GetComponent<Renderer>();
         layerMask = ~layerMask;         //We want our raycasts to ignore the selected layers  
+		renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
     }
 
 	void Update() {
@@ -65,12 +69,15 @@ public class EnemyBehavior : MonoBehaviour {
 
         //Behavior for if player is currently in sight
         if (iiis.IsPlayerInSight(gameObject, layerMask)) {
+		
 			cannibalAnim.SetBool("chasing", true);           
             playerLastPosReached = false;
             isChasing = true;
             robotChildLastPos = robotChild.transform.position;
             navAgent.SetDestination(robotChild.transform.position);
             navAgent.speed = chasingSpeed;
+			//change color	
+			changeColor(chaseColor);
             if ((robotChild.transform.position - transform.position).magnitude < closeEnough) {     //Attack behavior here
                 if (isAttackTimerOn == false) {
                     attackTimer = attackDelay;
@@ -101,6 +108,7 @@ public class EnemyBehavior : MonoBehaviour {
 				cannibalAnim.SetBool("chasing", false);
 			    cannibalAnim.SetBool("playerPlaysDead", true);
                 LookAround();
+				changeColor(alertColor);
             }
         }
         //Behavior for if player is no longer in sight and agrro timer is off
@@ -111,6 +119,7 @@ public class EnemyBehavior : MonoBehaviour {
             isChasing = false;
             navAgent.SetDestination(points[destPoint].position);
             navAgent.speed = patrolSpeed;
+			changeColor(baseColor);
         }
 
         //Patrol behavior
@@ -120,7 +129,11 @@ public class EnemyBehavior : MonoBehaviour {
         }
     }
 
-
+	void changeColor(Color c) {
+		for (int i = 0; i < renderers.Length; i++) {
+			renderers[i].material.SetColor("_EmissionColor", c);
+		}
+	}
 
 
 
