@@ -89,7 +89,7 @@ public class EnemyBehavior : MonoBehaviour {
                 }                   
                 if (attackTimer < 0) {
                     cannibalAnim.SetBool("Kill", true);
-                    //Fabric.EventManager.Instance.PostEvent("AttackMusic");
+					//Fabric.EventManager.Instance.PostEvent("AttackMusic");
                 }
             }
             if (lookingForPlayer) {               
