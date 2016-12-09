@@ -23,7 +23,7 @@ public class PlayerAbilities : MonoBehaviour {
 
 	public GameObject enemy;
 
-	public Transform debugSphere;
+	//public Transform debugSphere;
 
 	Energy nrg;
 	CharacterMovement cM;
@@ -73,7 +73,7 @@ public class PlayerAbilities : MonoBehaviour {
             lightValue = 0;
         }
  
-		debugSphere.localScale = new Vector3(lightValue * maxDetectionDistance, lightValue * maxDetectionDistance, lightValue * maxDetectionDistance);
+		//debugSphere.localScale = new Vector3(lightValue * maxDetectionDistance, lightValue * maxDetectionDistance, lightValue * maxDetectionDistance);
 		Debug.DrawRay(transform.position, (enemy.transform.position - transform.position).normalized * lightValue);
 
 		if (Vector3.Distance(transform.position, enemy.transform.position) < lightValue) {
@@ -122,7 +122,7 @@ public class PlayerAbilities : MonoBehaviour {
 		if (Input.GetButton("pickUp")) {
 			core = nrg.getPowerCore();
 			key = getThisKey();
-			//print(keyCount);
+			print(keyCount);
 			if (key != null) {
 				Destroy(key.gameObject);
 				//print ("picked up a key");
