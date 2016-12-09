@@ -23,7 +23,7 @@ public class CharacterMovement : MonoBehaviour {
 	void Start() {
 		pA = GetComponent<PlayerAbilities>();
 		enrg = GetComponent<Energy>();
-		ending = GameObject.Find("THE END").GetComponent<TheEnd>();
+		//ending = GameObject.Find("THE END").GetComponent<TheEnd>();
 	}
 
 	void Update() {
@@ -44,7 +44,7 @@ public class CharacterMovement : MonoBehaviour {
 		}
 
 
-		if (!pA.getPlayDead() && !pA.getDancing() && !enrg.getEnergyAnimBool() && !pA.getpickUpAnim() && !ending.getEnd()) {
+		if (!pA.getPlayDead() && !pA.getDancing() && !enrg.getEnergyAnimBool() && !pA.getpickUpAnim()) {
 
 			float Horizontal = Input.GetAxis("Horizontal");
 			float Vertical = Input.GetAxis("Vertical");
